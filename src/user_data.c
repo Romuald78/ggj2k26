@@ -6,8 +6,8 @@
 
 
 void initUser(UserData* p) {
-    p->w = 100;
-    p->h = 50;
+    p->w = 70;
+    p->h = 33;
 }
 
 int updateUser(Game* pGame) {
@@ -30,20 +30,20 @@ void drawUser(Game* pGame) {
 
     // Draw border
     for (int j=0; j<p->w; j++) {
-        printf("*");
+        printf("🧱");
     }
-    printf("\n");
+    puts("");
     for (int i=1; i<p->h-1; i++) {
-        printf("*");
-        for (int j=1; j<p->w-1; j++) {
-            printf(" ");
+        printf("🧱");
+        for (int j=1; j<p->w-1 - 11; j+=11)   {
+            printf("  🧭▶️ 🔌⚙️ 📦⏱️ 🚨🛠️ 📊💡");
         }
-        printf("*\n");
+        puts("🧱");
     }
     for (int j=0; j<p->w; j++) {
-        printf("*");
+        printf("🧱");
     }
-    printf("\n");
+    puts("");
 
 
 }
