@@ -4,13 +4,14 @@
 #define GGJ2K26_V3_USER_DATA_H
 
 #include "game.h"
+#include "module.h"
 
 typedef struct {
     int zoomin;
     int zoomout;
     int w;
     int h;
-
+    Module* modules;
 } UserData;
 
 

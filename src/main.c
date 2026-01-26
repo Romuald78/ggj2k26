@@ -7,6 +7,8 @@
 #include "events.h"
 #include "user_data.h"
 #include "utils.h"
+#include "module.h"
+#include "mod_convey.h"
 
 int main(){
 
@@ -20,6 +22,14 @@ int main(){
 
     int flags = fcntl(STDIN_FILENO, F_GETFL);
     fcntl(STDIN_FILENO, F_SETFL, flags | O_NONBLOCK);
+
+    // Create modules
+    ud.modules = addConveyModule(ud.modules, "LINE#1", 11, 5, 20, 1);
+
+
+    // init Fill modules
+    // TODO
+
 
     //disable_echo();
     // enable_raw_mode();

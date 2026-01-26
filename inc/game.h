@@ -3,6 +3,9 @@
 
 #include <stdio.h>
 
+#define MAX_NAME_SIZE  32
+#define MAX_NB_MODULES 96
+
 #define MAX_BUFFER_CMD 64
 
 typedef struct {

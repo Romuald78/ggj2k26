@@ -2,12 +2,17 @@
 #include "game.h"
 #include "user_data.h"
 
+#include <stdlib.h>
+
 #include "error.h"
 
 
 void initUser(UserData* p) {
     p->w = 70;
     p->h = 33;
+    p->zoomin = 0;
+    p->zoomout = 0;
+    p->modules = NULL;
 }
 
 int updateUser(Game* pGame) {
@@ -35,15 +40,28 @@ void drawUser(Game* pGame) {
     puts("");
     for (int i=1; i<p->h-1; i++) {
         printf("🧱");
+        for (int j=1; j<p->w-1; j++)   {
+            printf("  ");
+        }
+        /*
         for (int j=1; j<p->w-1 - 11; j+=11)   {
             printf("  🧭▶️ 🔌⚙️ 📦⏱️ 🚨🛠️ 📊💡");
         }
+        //*/
         puts("🧱");
     }
     for (int j=0; j<p->w; j++) {
         printf("🧱");
     }
     puts("");
+
+    Module* current_mod = p->modules;
+    while (current_mod != NULL){
+        current_mod->pDraw(current_mod);
+        current_mod = current_mod->pNext;
+    }
+
+
 
 
 }

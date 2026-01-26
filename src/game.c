@@ -23,12 +23,12 @@ Game* createGame(){
     p->events.mouse_dev = NULL;
     p->events.pad_dev   = NULL;
 
+/*
     // Open config file and open devices (root or sudo is required)
     FILE* pCfg = fopen("../config/events.cfg", "r");
     if (pCfg != NULL) {
         char tmp1[256] = {0};
         char tmp2[256] = {0};
-/*
         while (fscanf(pCfg, "%[^;];%s\n", tmp1, tmp2) == 2) {
             if(strcmp(tmp1, "KEYBOARD") == 0) {
                 p->events.key_dev = fopen(tmp2, "rb");
@@ -43,9 +43,9 @@ Game* createGame(){
                 }
             }
         }
-//*/
     }
     printf("%s\n", strerror(errno));
+//*/
 
     p->pData = NULL;
 
