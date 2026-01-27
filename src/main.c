@@ -24,7 +24,10 @@ int main(){
     fcntl(STDIN_FILENO, F_SETFL, flags | O_NONBLOCK);
 
     // Create modules
-    ud.modules = addConveyModule(ud.modules, "LINE#1", 11, 5, 20, 1);
+    ud.modules = addConveyModule(ud.modules, "LINE#1H", 11, 5, 20, MOD_RIGHT, 20);
+    ud.modules = addConveyModule(ud.modules, "LINE#2V", 31, 6, 10, MOD_DOWN, 15);
+    ud.modules = addConveyModule(ud.modules, "LINE#3H", 11, 16, 20, MOD_LEFT, 10);
+    ud.modules = addConveyModule(ud.modules, "LINE#4V", 10, 6, 10, MOD_UP, 5);
 
 
     // init Fill modules

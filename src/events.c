@@ -20,17 +20,8 @@ int handleKeyEvt(int evt_num, int evt_state, void* pData) {
 
         // check command
         // TODO optimize using function pointers in a list (polymorphism)
-        if ( strcmp(cmd, "UPWARD2") == 0 ) {
-            ud->zoomout = 1;
-            ud->zoomin = 0;
-        }
-        else if ( strcmp(cmd, "FORWARD1") == 0 ) {
-            ud->zoomout = 0;
-            ud->zoomin = 1;
-        }
-        else if ( strcmp(cmd, "DOWN2") == 0 ) {
-            ud->zoomout = 0;
-            ud->zoomin = 0;
+        if ( strcmp(cmd, "xxxxx") == 0 ) {
+            //
         }
 
         // flush command to check for the next one

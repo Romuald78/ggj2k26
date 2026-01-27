@@ -7,8 +7,6 @@
 #include "module.h"
 
 typedef struct {
-    int zoomin;
-    int zoomout;
     int w;
     int h;
     Module* modules;

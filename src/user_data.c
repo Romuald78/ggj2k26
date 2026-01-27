@@ -10,22 +10,22 @@
 void initUser(UserData* p) {
     p->w = 70;
     p->h = 33;
-    p->zoomin = 0;
-    p->zoomout = 0;
     p->modules = NULL;
 }
 
 int updateUser(Game* pGame) {
     checkGame(pGame);
     UserData* p = (UserData*)(pGame->pData);
-    if(p) {
-        if (p->zoomin) {
-            p->w += 1;
-        }
-        if (p->zoomout) {
-            p->w -= 1;
-        }
+
+    // Draw modules
+    Module* current_mod = p->modules;
+    while (current_mod != NULL){
+        current_mod->pUpdate(current_mod);
+        current_mod = current_mod->pNext;
     }
+
+
+
     return 0;
 }
 
@@ -33,28 +33,8 @@ void drawUser(Game* pGame) {
     checkGame(pGame);
     UserData* p = (UserData*)(pGame->pData);
 
-    // Draw border
-    for (int j=0; j<p->w; j++) {
-        printf("🧱");
-    }
-    puts("");
-    for (int i=1; i<p->h-1; i++) {
-        printf("🧱");
-        for (int j=1; j<p->w-1; j++)   {
-            printf("  ");
-        }
-        /*
-        for (int j=1; j<p->w-1 - 11; j+=11)   {
-            printf("  🧭▶️ 🔌⚙️ 📦⏱️ 🚨🛠️ 📊💡");
-        }
-        //*/
-        puts("🧱");
-    }
-    for (int j=0; j<p->w; j++) {
-        printf("🧱");
-    }
-    puts("");
 
+    // Draw modules
     Module* current_mod = p->modules;
     while (current_mod != NULL){
         current_mod->pDraw(current_mod);

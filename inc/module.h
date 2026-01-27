@@ -5,6 +5,13 @@
 #ifndef GGJ2K26_V3_MODULE_H
 #define GGJ2K26_V3_MODULE_H
 
+enum {
+    MOD_RIGHT,
+    MOD_DOWN,
+    MOD_LEFT,
+    MOD_UP
+};
+
 typedef struct _mod Module;
 
 typedef void (*ModuleUpdate)(Module* p);
@@ -16,8 +23,10 @@ struct _mod{
     ModuleDraw   pDraw;
     int          x0;
     int          y0;
-    int          w;
-    int          h;
+    int          size;
+    int          orient;    // orient = 0:right / 1:down / 2:left / 3:top
+    int          speed;
+    int          time;
     struct _mod* pNext;
 };
 
