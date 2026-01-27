@@ -27,6 +27,7 @@ struct _mod{
     int          orient;    // orient = 0:right / 1:down / 2:left / 3:top
     int          speed;
     int          time;
+    int          running;
     struct _mod* pNext;
 };
 

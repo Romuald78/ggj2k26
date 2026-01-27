@@ -5,13 +5,28 @@
 #include "mod_convey.h"
 #include "error.h"
 
+void conveyActions(Module* p, char* action) {
+    if (p == NULL || action == NULL) {
+        RAGE_QUIT(61, "Module or string pointer null");
+    }
+    // compare strings
+    if (!strcmp("STOP", action)) {
+        p->running = 0;
+    }
+    else if (!strcmp("START", action)) {
+        p->running = 1;
+    }
+}
+
 void conveyUpdate(Module* p) {
     if (p == NULL) {
         RAGE_QUIT(60, "Module pointer null");
     }
     // increase time
-    p->time += 1;
-    p->time &= 0x7FFFFFFF;
+    if (p->running) {
+        p->time += 1;
+        p->time &= 0x7FFFFFFF;
+    }
 }
 
 void conveyDraw  (Module* p) {
@@ -69,6 +84,7 @@ Module* addConveyModule(Module* pList, char* name, int x0, int y0, int size, int
     p->size  = size;
     p->orient  = orient;
     p->speed = speed;
+    p->running = 0;
     p->pNext = pList;
     return p;
 }

@@ -1,12 +1,12 @@
-Junction : 3 inputs / 1 output
+Junction (merge/dispatch) : 3 inputs / 1 output
 Take inputs one-by-one in the same order (round-robbin)
 ⬛⬜⬛
 ⬜⬇️⬜  ⬅️➡️⬆️⬇️
 ⬛⬜⬛
 
-Crossover : 1 input / 1 output 
+CROSSOVER : 1 input / 1 output 
 (Horizontal OR Vertical OR one-by-one on both directions)
-other line is blocked
+(one command for each)
 ⬛⬜⬛
 ⬜↔️⬜  ↕️↔️🔄
 ⬛⬜⬛
@@ -22,7 +22,13 @@ LOADER
 ⬛🪨⬛  🪨🪵🔩🔗📦🛢️
   ⬜
 
-
+CRAFTER
+needs several entries (1, 2, or 3) to produce an output ?
+⬛⬛⬜⬛⬛
+⬛⬛⬇️⬛⬛
+⬜➡️⬛➡️⬜  ⬅️➡️⬆️⬇️❌
+⬛⬛❌⬛⬛
+⬛⬛❌⬛⬛
 
 W = 70(+2)
 H = 30(+2)
