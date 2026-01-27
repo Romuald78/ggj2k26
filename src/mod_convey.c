@@ -56,7 +56,6 @@ void conveyDraw  (Module* p) {
         }
         printf("⬜");
     }
-    printf("\n");
 }
 
 // LIFO push

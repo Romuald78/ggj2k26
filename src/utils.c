@@ -1,7 +1,11 @@
+#include "stdio.h"
+#include "stdlib.h"
 #include <termios.h>
 #include <unistd.h>
 #include <time.h>
 #include "utils.h"
+
+#include "draw.h"
 
 long gettime(){
     struct timespec ts;
@@ -40,3 +44,4 @@ void enable_echo() {
     t.c_lflag |= ECHO;
     tcsetattr(STDIN_FILENO, TCSANOW, &t);
 }
+

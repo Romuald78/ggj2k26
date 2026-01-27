@@ -8,8 +8,8 @@
 
 
 void initUser(UserData* p) {
-    p->w = 70;
-    p->h = 33;
+    p->w = 78;
+    p->h = 39;
     p->modules = NULL;
 }
 
@@ -23,9 +23,6 @@ int updateUser(Game* pGame) {
         current_mod->pUpdate(current_mod);
         current_mod = current_mod->pNext;
     }
-
-
-
     return 0;
 }
 
@@ -42,8 +39,8 @@ void drawUser(Game* pGame) {
     }
 
 
-
-
+    // set cursor at the bottom of the screen
+    printf("\x1B[%d;1H\n", p->h);
 }
 
 char* updateCommand(Cmd* pCmd, char c) {

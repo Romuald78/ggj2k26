@@ -17,6 +17,9 @@ add_executable(ggj2k26_v3 ${SRC_FILES}
         inc/action.h
         src/module.c
         inc/mod_convey.h
-        src/mod_convey.c)
+        src/mod_convey.c
+        inc/mod_junction.h
+        src/mod_junction.c
+)
 
 target_include_directories(ggj2k26_v3 PRIVATE inc)
