@@ -44,9 +44,9 @@ int main(){
 
     // INTRO + SPLASH SCREENS
     /*
-    displayAscii("./assets/ggj.ascii", "Global Game Jam 2026 - Cergy - France", 8000, 43, 1);
-    displayAscii("./assets/rph.ascii", "       RPH Studio presents...", 10000, 40, 2);
-    displayAscii("./assets/amazin.ascii", "OPTICAL READERS MATTERS", 15000, 15, 3);
+    displayAscii("./assets/ggj.ascii", "Global Game Jam 2026 - CERGY - FRANCE", 8000, 44, 1);
+    displayAscii("./assets/rph.ascii", "       RPH STUDIO presents...", 10000, 40, 2);
+    displayAscii("./assets/amazin.ascii", "OPTICAL READERS MATTER", 15000, 15, 3);
     //*/
 
     //disable_echo();

@@ -5,7 +5,7 @@
 #ifndef GGJ2K26_V3_ACTION_H
 #define GGJ2K26_V3_ACTION_H
 
-#include "module.h"
+#include "../src/modules/inc/module.h"
 
 typedef void (*ModuleAction)(Module* p);
 

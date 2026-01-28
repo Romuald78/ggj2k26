@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "mod_convey.h"
+#include "../inc/mod_convey.h"
 #include "error.h"
 
 void conveyActions(Module* p, char* action) {

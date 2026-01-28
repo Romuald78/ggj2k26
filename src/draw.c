@@ -37,6 +37,14 @@ void initDraw(Game* pGame){
         puts("");
     }
 
+    printf("\x1B[20;10H");
+    printf("    ┌─╨┐");
+    printf("\x1B[21;10H");
+    printf("   ═╡🪫╞═");
+    printf("\x1B[22;10H");
+    printf("    └╥─┘");
+
+
 }
 
 void draw(Game* pGame, float delta_sec){
@@ -73,7 +81,7 @@ void displayAscii(char* filename, char* msg, int time, int offset, int mode) {
                 i++;
             }
             rewind(fp);
-            printf("\x1B[%d;58H", i+2);
+            printf("\x1B[%d;60H", i+2);
             printf("\x1B[38;2;%d;%d;%dm", v2, v2, 0);
             printf("%s\n", msg);
         }

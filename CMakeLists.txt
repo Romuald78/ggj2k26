@@ -13,13 +13,13 @@ add_executable(ggj2k26_v3 ${SRC_FILES}
         src/utils.c
         inc/user_data.h
         src/user_data.c
-        inc/module.h
+        modules/inc/module.h
         inc/action.h
-        src/module.c
-        inc/mod_convey.h
-        src/mod_convey.c
-        inc/mod_junction.h
-        src/mod_junction.c
+        modules/src/module.c
+        modules/inc/mod_convey.h
+        modules/src/mod_convey.c
+        modules/inc/mod_junction.h
+        modules/src/mod_junction.c
 )
 
-target_include_directories(ggj2k26_v3 PRIVATE inc)
+target_include_directories(ggj2k26_v3 PRIVATE inc modules/inc)

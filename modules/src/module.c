@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "module.h"
+#include "../inc/module.h"
 #include "error.h"
 
 Module* createModule(char* name, ModuleUpdate upd, ModuleDraw draw) {

@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "mod_junction.h"
+#include "../inc/mod_junction.h"
 #include "error.h"
 
 void junctionUpdate(Module* p) {
