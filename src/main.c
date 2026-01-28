@@ -12,7 +12,7 @@
 #include "mod_convey.h"
 #include "mod_junction.h"
 
-int main(){
+int main(int argc, char** argv){
 
     UserData ud;
 
@@ -26,21 +26,32 @@ int main(){
     fcntl(STDIN_FILENO, F_SETFL, flags | O_NONBLOCK);
 
     // Create modules
-    ud.modules = addJunctionModule(ud.modules, "J#41", 10, 5, MOD_RIGHT);
-    ud.modules = addConveyModule  (ud.modules, "LINE#1H", 11, 5, 20, MOD_RIGHT, 20);
-    conveyActions(ud.modules, "START");
+    ud.modules = addJunctionModule(ud.modules, "JUNC#41", 10, 5, MOD_RIGHT);
 
-    ud.modules = addJunctionModule(ud.modules, "J#12", 31, 5, MOD_DOWN);
-    ud.modules = addConveyModule  (ud.modules, "LINE#2V", 31, 6, 10, MOD_DOWN, 15);
-    conveyActions(ud.modules, "START");
+    ud.modules = addConveyModule  (ud.modules, "CONV#1H", 11, 5, 20, MOD_RIGHT, 1.0);
+    ud.actions = addAction(ud.actions, "START", ud.modules);
+    ud.actions = addAction(ud.actions, "STOP", ud.modules);
 
-    ud.modules = addJunctionModule(ud.modules, "J#23", 31, 16, MOD_LEFT);
-    ud.modules = addConveyModule  (ud.modules, "LINE#3H", 11, 16, 20, MOD_LEFT, 10);
-    conveyActions(ud.modules, "START");
+    ud.modules = addJunctionModule(ud.modules, "JUNC#12", 31, 5, MOD_DOWN);
 
-    ud.modules = addJunctionModule(ud.modules, "J#34", 10, 16, MOD_UP);
-    ud.modules = addConveyModule  (ud.modules, "LINE#4V", 10, 6, 10, MOD_UP, 5);
-    conveyActions(ud.modules, "START");
+    ud.modules = addConveyModule  (ud.modules, "CONV#2V", 31, 6, 10, MOD_DOWN, 0.5);
+    ud.actions = addAction(ud.actions, "START", ud.modules);
+    ud.actions = addAction(ud.actions, "STOP", ud.modules);
+
+    ud.modules = addJunctionModule(ud.modules, "JUNC#23", 31, 16, MOD_LEFT);
+
+    ud.modules = addConveyModule  (ud.modules, "CONV#3H", 11, 16, 20, MOD_LEFT, 0.25);
+    ud.actions = addAction(ud.actions, "START", ud.modules);
+    ud.actions = addAction(ud.actions, "STOP", ud.modules);
+
+    ud.modules = addJunctionModule(ud.modules, "JUNC#34", 10, 16, MOD_UP);
+
+    ud.modules = addConveyModule  (ud.modules, "CONV#4V", 10, 6, 10, MOD_UP, 0.125);
+    ud.actions = addAction(ud.actions, "START", ud.modules);
+    ud.actions = addAction(ud.actions, "STOP", ud.modules);
+
+
+
 
     // INTRO + SPLASH SCREENS
     /*

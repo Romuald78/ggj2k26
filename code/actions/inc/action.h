@@ -5,18 +5,15 @@
 #ifndef GGJ2K26_V3_ACTION_H
 #define GGJ2K26_V3_ACTION_H
 
-#include "../src/modules/inc/module.h"
-
-typedef void (*ModuleAction)(Module* p);
+#include "module.h"
 
 
 typedef struct _act {
     char         pName[32];  // action name
     Module*      pMod;
-    ModuleAction pAction;
     struct _act* pNext;
 } Action;
 
-Action* addAction(Action* pList, char* pActName, char* pModName, ModuleAction pAct);
+Action* addAction(Action* pList, char* actname, Module* pMod);
 
 #endif //GGJ2K26_V3_ACTION_H

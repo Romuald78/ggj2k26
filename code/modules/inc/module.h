@@ -1,0 +1,42 @@
+//
+// Created by cytech on 26/01/2026.
+//
+
+#ifndef GGJ2K26_V3_MODULE_H
+#define GGJ2K26_V3_MODULE_H
+
+enum {
+    MOD_RIGHT,
+    MOD_DOWN,
+    MOD_LEFT,
+    MOD_UP
+};
+
+typedef struct _mod Module;
+
+typedef void (*ModuleUpdate)(Module* p);
+typedef void (*ModuleDraw)  (Module* p);
+typedef void (*ModuleAction)(Module* p, char* actname);
+
+struct _mod{
+    char         pName[32];     // Module name
+    ModuleUpdate pUpdate;       // Module UPDATE function (called during update phase)
+    ModuleDraw   pDraw;         // Module DRAW   function (called during update phase)
+    ModuleAction pAction;       // Module ACTION function (called during event  phase)
+
+    int          x0;            // ref position
+    int          y0;
+    int          size;          // size of the module (can be a radius, a length, a perimeter, ...)
+    int          orient;        // orient = 0:right / 1:down / 2:left / 3:top
+
+    float        speed;         // speed process
+    float        time;          // local time counter
+    int          running;       // is it running or is it stopped
+    struct _mod* pNext;
+};
+
+Module* createModule(char* name,
+                     int x0, int y0, int size, int orient, float speed,
+                     ModuleUpdate upd, ModuleDraw draw, ModuleAction action);
+
+#endif //GGJ2K26_V3_MODULE_H

@@ -5,5 +5,5 @@ int update(Game* pGame, float delta_sec){
     // check
     checkGame(pGame);
     
-    return updateUser(pGame);
+    return updateUser(pGame, delta_sec);
 }

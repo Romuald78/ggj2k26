@@ -7,8 +7,6 @@
 
 #include "module.h"
 
-
-Module* addConveyModule(Module* pList, char* name, int x0, int y0, int size, int orient, int speed);
-void conveyActions(Module* p, char* action);
+Module* addConveyModule(Module* pList, char* name, int x0, int y0, int size, int orient, float speed);
 
 #endif //GGJ2K26_V3_MOD_CONVEY_H

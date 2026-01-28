@@ -2,18 +2,21 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "../inc/mod_junction.h"
+#include "mod_junction.h"
 #include "error.h"
 
+//=========================================================
+// UPDATE callback
+//=========================================================
 void junctionUpdate(Module* p) {
     if (p == NULL) {
         RAGE_QUIT(60, "Module pointer null");
     }
-    // increase time
-    p->time += 1;
-    p->time &= 0x7FFFFFFF;
 }
 
+//=========================================================
+// DRAW callback
+//=========================================================
 void junctionDraw  (Module* p) {
     if (p != NULL) {
         printf("\x1B[%d;%dH", p->y0-1, p->x0-2);
@@ -43,17 +46,21 @@ void junctionDraw  (Module* p) {
     }
 }
 
-// LIFO push
+//=========================================================
+// ACTION callback
+//=========================================================
+void junctionAction(Module* pMod, char* actname) {
+
+}
+
+//=========================================================
+// CONSTRUCTOR
+//=========================================================
 Module* addJunctionModule(Module* pList, char* name, int x0, int y0, int orient){
-    Module* p = createModule(name, junctionUpdate, junctionDraw);
+    Module* p = createModule(name, x0, y0, 3, orient, 1, junctionUpdate, junctionDraw, junctionAction);
     if (p == NULL) {
         RAGE_QUIT(60, "create junction failed");
     }
-    p->x0 = 2*x0;
-    p->y0 = y0;
-    p->size  = 3;
-    p->orient  = orient;
-    p->speed = 1;
-    p->pNext = pList;
+    p->pNext   = pList;
     return p;
 }

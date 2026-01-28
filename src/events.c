@@ -14,20 +14,24 @@ int handleKeyEvt(int evt_num, int evt_state, void* pData) {
 
     Game*     p  = (Game*)pData;
     UserData* ud = (UserData*)(p->pData);
+
     char* cmd = NULL;
     cmd = updateCommand(&(p->command), evt_num & 0xFF);
     if (cmd != NULL) {
-
         // check command
-        // TODO optimize using function pointers in a list (polymorphism)
-        if ( strcmp(cmd, "xxxxx") == 0 ) {
-            //
+        // check all actions and call the function if command matches
+        Action* pAct = ud->actions;
+        while (pAct != NULL) {
+            Module* pMod = pAct->pMod;
+            if ( strcmp(cmd, pAct->pName) == 0 ) {
+                pMod->pAction(pMod, cmd);
+            }
+            // go to next module
+            pAct = pAct->pNext;
         }
-
         // flush command to check for the next one
         flushCommand(&(p->command));
     }
-
     return 0;
 }
 

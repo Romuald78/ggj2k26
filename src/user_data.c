@@ -11,16 +11,23 @@ void initUser(UserData* p) {
     p->w = 78;
     p->h = 39;
     p->modules = NULL;
+    p->actions = NULL;
 }
 
-int updateUser(Game* pGame) {
+int updateUser(Game* pGame, float delta) {
     checkGame(pGame);
     UserData* p = (UserData*)(pGame->pData);
 
-    // Draw modules
+    // Update all modules
     Module* current_mod = p->modules;
     while (current_mod != NULL){
+        // Update module timer
+        if (current_mod->running) {
+            current_mod->time += delta;
+        }
+        // Update specific module behaviour
         current_mod->pUpdate(current_mod);
+        // Go to next module
         current_mod = current_mod->pNext;
     }
     return 0;
