@@ -5,6 +5,7 @@
 #include "stddef.h"
 #include "error.h"
 #include "game.h"
+#include "product.h"
 #include "events.h"
 #include "user_data.h"
 #include "utils.h"
@@ -25,28 +26,36 @@ int main(int argc, char** argv){
     int flags = fcntl(STDIN_FILENO, F_GETFL);
     fcntl(STDIN_FILENO, F_SETFL, flags | O_NONBLOCK);
 
-    // Create modules
-    ud.modules = addJunctionModule(ud.modules, "JUNC#41", 10, 5, MOD_RIGHT);
+    // ============================================
+    // Create Products (?)
+    // ============================================
+    ud.products = addProduct(ud.products, "📦", 20, 19);
 
-    ud.modules = addConveyModule  (ud.modules, "CONV#1H", 11, 5, 20, MOD_RIGHT, 1.0);
+
+    // ============================================
+    // Create modules + Add actions
+    // ============================================
+    ud.modules = addJunctionModule(ud.modules, "JUNC#41", 10, 6, MOD_RIGHT, 0.25);
+
+    ud.modules = addConveyModule  (ud.modules, "CONV#1H", 12, 6, 20, MOD_RIGHT, 0.5);
     ud.actions = addAction(ud.actions, "START", ud.modules);
     ud.actions = addAction(ud.actions, "STOP", ud.modules);
 
-    ud.modules = addJunctionModule(ud.modules, "JUNC#12", 31, 5, MOD_DOWN);
+    ud.modules = addJunctionModule(ud.modules, "JUNC#12", 33, 6, MOD_DOWN, 0.25);
 
-    ud.modules = addConveyModule  (ud.modules, "CONV#2V", 31, 6, 10, MOD_DOWN, 0.5);
+    ud.modules = addConveyModule  (ud.modules, "CONV#2V", 33, 8, 10, MOD_DOWN, 0.25);
     ud.actions = addAction(ud.actions, "START", ud.modules);
     ud.actions = addAction(ud.actions, "STOP", ud.modules);
 
-    ud.modules = addJunctionModule(ud.modules, "JUNC#23", 31, 16, MOD_LEFT);
+    ud.modules = addJunctionModule(ud.modules, "JUNC#23", 33, 19, MOD_LEFT, 0.25);
 
-    ud.modules = addConveyModule  (ud.modules, "CONV#3H", 11, 16, 20, MOD_LEFT, 0.25);
+    ud.modules = addConveyModule  (ud.modules, "CONV#3H", 12, 19, 20, MOD_LEFT, 0.125);
     ud.actions = addAction(ud.actions, "START", ud.modules);
     ud.actions = addAction(ud.actions, "STOP", ud.modules);
 
-    ud.modules = addJunctionModule(ud.modules, "JUNC#34", 10, 16, MOD_UP);
+    ud.modules = addJunctionModule(ud.modules, "JUNC#34", 10, 19, MOD_UP, 0.25);
 
-    ud.modules = addConveyModule  (ud.modules, "CONV#4V", 10, 6, 10, MOD_UP, 0.125);
+    ud.modules = addConveyModule  (ud.modules, "CONV#4V", 10, 8, 10, MOD_UP, 0.0625);
     ud.actions = addAction(ud.actions, "START", ud.modules);
     ud.actions = addAction(ud.actions, "STOP", ud.modules);
 

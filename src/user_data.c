@@ -5,13 +5,15 @@
 #include <stdlib.h>
 
 #include "error.h"
+#include "product.h"
 
 
 void initUser(UserData* p) {
     p->w = 78;
     p->h = 39;
-    p->modules = NULL;
-    p->actions = NULL;
+    p->modules  = NULL;
+    p->actions  = NULL;
+    p->products = NULL;
 }
 
 int updateUser(Game* pGame, float delta) {
@@ -24,9 +26,14 @@ int updateUser(Game* pGame, float delta) {
         // Update module timer
         if (current_mod->running) {
             current_mod->time += delta;
+            while (current_mod->time >= current_mod->speed) {
+                current_mod->time -= current_mod->speed;
+                current_mod->time_step += 1;
+                // Update specific module behaviour
+                current_mod->pUpdate(current_mod, p);
+            }
         }
-        // Update specific module behaviour
-        current_mod->pUpdate(current_mod);
+
         // Go to next module
         current_mod = current_mod->pNext;
     }
@@ -37,12 +44,19 @@ void drawUser(Game* pGame) {
     checkGame(pGame);
     UserData* p = (UserData*)(pGame->pData);
 
-
     // Draw modules
     Module* current_mod = p->modules;
     while (current_mod != NULL){
         current_mod->pDraw(current_mod);
         current_mod = current_mod->pNext;
+    }
+
+    // Draw Products
+    Product* current_prod = p->products;
+    while (current_prod != NULL){
+        printf("\x1B[%d;%dH", current_prod->y, current_prod->x);
+        printf("\x1B[48;2;255;255;0m%s\x1B[0m", current_prod->type);
+        current_prod = current_prod->pNext;
     }
 
 
@@ -68,7 +82,7 @@ char* updateCommand(Cmd* pCmd, char c) {
         res = pCmd->buffer;
         // remove line feed
         pCmd->buffer[pCmd->index-1] = '\0';
-        fprintf(stderr, "found   : |%s|\n", pCmd->buffer);
+        //fprintf(stderr, "found   : |%s|\n", pCmd->buffer);
     }
     return res;
 }
@@ -90,5 +104,5 @@ void flushCommand(Cmd* pCmd) {
     }
     pCmd->index = 0;
     pCmd->buffer[MAX_BUFFER_CMD] = '\0';
-    fprintf(stderr, "flushed : |%s|\n", pCmd->buffer);
+    //fprintf(stderr, "flushed : |%s|\n", pCmd->buffer);
 }

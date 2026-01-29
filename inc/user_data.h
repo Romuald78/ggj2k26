@@ -6,12 +6,14 @@
 #include "action.h"
 #include "game.h"
 #include "module.h"
+#include "product.h"
 
 typedef struct {
     int w;
     int h;
-    Module* modules;
-    Action* actions;
+    Module*  modules;
+    Action*  actions;
+    Product* products;
 } UserData;
 
 

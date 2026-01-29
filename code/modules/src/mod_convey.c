@@ -4,13 +4,49 @@
 
 #include "mod_convey.h"
 #include "error.h"
+#include "user_data.h"
+#include "product.h"
 
 //=========================================================
 // UPDATE callback
 //=========================================================
-void conveyUpdate(Module* p) {
-    if (p == NULL) {
+void conveyUpdate(Module* p, void* pData) {
+    if (p == NULL || pData == NULL) {
         RAGE_QUIT(60, "Module pointer null");
+    }
+    // Process all goods located in the current module (2D area)
+    Product* pProd = ((UserData*)pData)->products;
+    int minx = p->x0;
+    int maxx = minx;
+    int miny = p->y0;
+    int maxy = miny;
+    int dx = 0;
+    int dy = 0;
+    switch (p->orient) {
+        case MOD_RIGHT:
+            maxx += 2 * p->size - 2;
+            dx = 1;
+            break;
+        case MOD_DOWN:
+            maxy += p->size - 1;
+            dy = 1;
+            break;
+        case MOD_LEFT:
+            maxx += 2 * p->size - 2;
+            dx = -1;
+            break;
+        case MOD_UP:
+            maxy += p->size - 1;
+            dy = -1;
+            break;
+    }
+    while (pProd != NULL) {
+        // check if the product is in the module area
+        if (minx <= pProd->x && pProd->x <= maxx && miny <= pProd->y && pProd->y <= maxy) {
+            pProd->x += 2 * dx;
+            pProd->y += dy;
+        }
+        pProd = pProd->pNext;
     }
 }
 
@@ -28,7 +64,7 @@ void conveyDraw  (Module* p) {
             if (p->orient>=2) {
                 way = -1;
             }
-            if (((int)(p->time/p->speed)-(way*i))%4 == 0) {
+            if (((int)(p->time_step)-(way*i))%4 == 0) {
                 // print arrow
                 switch (p->orient) {
                     case MOD_LEFT:

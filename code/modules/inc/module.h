@@ -14,7 +14,7 @@ enum {
 
 typedef struct _mod Module;
 
-typedef void (*ModuleUpdate)(Module* p);
+typedef void (*ModuleUpdate)(Module* p, void* pData);
 typedef void (*ModuleDraw)  (Module* p);
 typedef void (*ModuleAction)(Module* p, char* actname);
 
@@ -31,6 +31,7 @@ struct _mod{
 
     float        speed;         // speed process
     float        time;          // local time counter
+    int          time_step;     // local time step, increased when time is more than speed
     int          running;       // is it running or is it stopped
     struct _mod* pNext;
 };
