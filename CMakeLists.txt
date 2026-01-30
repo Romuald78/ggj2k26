@@ -6,7 +6,9 @@ file(GLOB_RECURSE SOURCES CONFIGURE_DEPENDS *.c *.h)
 list(FILTER SOURCES EXCLUDE REGEX "cmake-build-")
 add_executable(ggj2k26_v3 ${SOURCES}
         code/product/inc/product.h
-        code/product/src/product.c)
+        code/product/src/product.c
+        code/modules/inc/mod_power_supply.h
+        code/modules/src/mod_power_supply.c)
 target_include_directories( ggj2k26_v3 PRIVATE
                             inc
                             code/modules/inc

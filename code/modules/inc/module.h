@@ -9,7 +9,8 @@ enum {
     MOD_RIGHT,
     MOD_DOWN,
     MOD_LEFT,
-    MOD_UP
+    MOD_UP,
+    MOD_NB_DIRS
 };
 
 typedef struct _mod Module;
@@ -28,6 +29,7 @@ struct _mod{
     int          y0;
     int          size;          // size of the module (can be a radius, a length, a perimeter, ...)
     int          orient;        // orient = 0:right / 1:down / 2:left / 3:top
+    int          powerId;       // powerid in order to connect modules: powerid of power supplies shall be unique
 
     float        speed;         // speed process
     float        time;          // local time counter

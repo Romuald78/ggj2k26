@@ -5,12 +5,13 @@
 #include <stdlib.h>
 
 #include "error.h"
+#include "parameters.h"
 #include "product.h"
 
 
 void initUser(UserData* p) {
-    p->w = 78;
-    p->h = 39;
+    p->w = SCREEN_W;
+    p->h = SCREEN_H;
     p->modules  = NULL;
     p->actions  = NULL;
     p->products = NULL;
@@ -26,11 +27,13 @@ int updateUser(Game* pGame, float delta) {
         // Update module timer
         if (current_mod->running) {
             current_mod->time += delta;
-            while (current_mod->time >= current_mod->speed) {
-                current_mod->time -= current_mod->speed;
-                current_mod->time_step += 1;
-                // Update specific module behaviour
-                current_mod->pUpdate(current_mod, p);
+            if (current_mod->speed > 0) {
+                while (current_mod->time >= current_mod->speed) {
+                    current_mod->time -= current_mod->speed;
+                    current_mod->time_step += 1;
+                    // Update specific module behaviour
+                    current_mod->pUpdate(current_mod, p);
+                }
             }
         }
 

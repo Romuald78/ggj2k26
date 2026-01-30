@@ -120,12 +120,6 @@ Module* addConveyModule(Module* pList, char* name, int x0, int y0, int size, int
     if (p == NULL) {
         RAGE_QUIT(70, "create convey failed");
     }
-    p->x0      = 2*x0;
-    p->y0      = y0;
-    p->size    = size;
-    p->orient  = orient;
-    p->speed   = speed;
-    p->running = 0;
-    p->pNext   = pList;
+    p->pNext = pList;
     return p;
 }

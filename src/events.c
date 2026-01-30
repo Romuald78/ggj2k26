@@ -24,6 +24,15 @@ int handleKeyEvt(int evt_num, int evt_state, void* pData) {
         while (pAct != NULL) {
             Module* pMod = pAct->pMod;
             if ( strcmp(cmd, pAct->pName) == 0 ) {
+                // Action has been found : remove digits and send to module callback
+                int idx = 0;
+                while (cmd[idx] != '\0') {
+                    if ('0' <= cmd[idx] && cmd[idx] <= '9') {
+                        cmd[idx] = '\0';
+                        break;
+                    }
+                    idx++;
+                }
                 pMod->pAction(pMod, cmd);
             }
             // go to next module

@@ -24,7 +24,7 @@ void initDraw(Game* pGame){
     printf("\x1B[0m");
     _clear();
 
-    // Draw border
+    // Draw borders
     for (int i=0; i<p->h; i++) {
         for (int j=0; j<p->w; j++) {
             if (i<=1 || i>=p->h-2 || j<=1 || j>=p->w-2) {
@@ -36,15 +36,6 @@ void initDraw(Game* pGame){
         }
         puts("");
     }
-
-    printf("\x1B[20;10H");
-    printf("    ┌─╨┐");
-    printf("\x1B[21;10H");
-    printf("   ═╡🪫╞═");
-    printf("\x1B[22;10H");
-    printf("    └╥─┘");
-
-
 }
 
 void draw(Game* pGame, float delta_sec){

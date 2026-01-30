@@ -12,6 +12,7 @@
 #include "module.h"
 #include "mod_convey.h"
 #include "mod_junction.h"
+#include "mod_power_supply.h"
 
 int main(int argc, char** argv){
 
@@ -29,36 +30,38 @@ int main(int argc, char** argv){
     // ============================================
     // Create Products (?)
     // ============================================
+    /*
     ud.products = addProduct(ud.products, "📦", 20, 19);
-
+    //*/
 
     // ============================================
     // Create modules + Add actions
     // ============================================
-    ud.modules = addJunctionModule(ud.modules, "JUNC#41", 10, 6, MOD_RIGHT, 0.25);
+    // commands for same types of modules shall contain letters followed by numbers
+    // full command name will be compared to call the "module" action method for the correct module
+    // Only text will be compared in the "module" action method in order to save some code !!
 
-    ud.modules = addConveyModule  (ud.modules, "CONV#1H", 12, 6, 20, MOD_RIGHT, 0.5);
-    ud.actions = addAction(ud.actions, "START", ud.modules);
-    ud.actions = addAction(ud.actions, "STOP", ud.modules);
+    ud.modules = addPowerSupModule(ud.modules, "PWR#1", 1, 10, 16);
+    ud.actions = addAction(ud.actions, "PWRON1" , ud.modules);
+    ud.actions = addAction(ud.actions, "PWROFF1", ud.modules);
 
-    ud.modules = addJunctionModule(ud.modules, "JUNC#12", 33, 6, MOD_DOWN, 0.25);
+    ud.modules = addPowerSupModule(ud.modules, "PWR#2", 2, 15, 16);
+    ud.actions = addAction(ud.actions, "PWRON2" , ud.modules);
+    ud.actions = addAction(ud.actions, "PWROFF2", ud.modules);
 
-    ud.modules = addConveyModule  (ud.modules, "CONV#2V", 33, 8, 10, MOD_DOWN, 0.25);
-    ud.actions = addAction(ud.actions, "START", ud.modules);
-    ud.actions = addAction(ud.actions, "STOP", ud.modules);
 
-    ud.modules = addJunctionModule(ud.modules, "JUNC#23", 33, 19, MOD_LEFT, 0.25);
 
-    ud.modules = addConveyModule  (ud.modules, "CONV#3H", 12, 19, 20, MOD_LEFT, 0.125);
-    ud.actions = addAction(ud.actions, "START", ud.modules);
-    ud.actions = addAction(ud.actions, "STOP", ud.modules);
+    ud.modules = addJunctionModule(ud.modules, "JUNC#1", 10, 6, MOD_RIGHT, 0.25);
+    ud.actions = addAction(ud.actions, "TURNL1", ud.modules);
+    ud.actions = addAction(ud.actions, "TURNR1", ud.modules);
 
-    ud.modules = addJunctionModule(ud.modules, "JUNC#34", 10, 19, MOD_UP, 0.25);
+    ud.modules = addConveyModule  (ud.modules, "CONV#1H", 12, 6, 20, MOD_RIGHT, 0.25);
+    ud.actions = addAction(ud.actions, "START1", ud.modules);
+    ud.actions = addAction(ud.actions, "STOP1" , ud.modules);
 
-    ud.modules = addConveyModule  (ud.modules, "CONV#4V", 10, 8, 10, MOD_UP, 0.0625);
-    ud.actions = addAction(ud.actions, "START", ud.modules);
-    ud.actions = addAction(ud.actions, "STOP", ud.modules);
-
+    ud.modules = addJunctionModule(ud.modules, "JUNC#2", 33, 6, MOD_RIGHT, 0.25);
+    ud.actions = addAction(ud.actions, "TURNL2", ud.modules);
+    ud.actions = addAction(ud.actions, "TURNR2", ud.modules);
 
 
 
