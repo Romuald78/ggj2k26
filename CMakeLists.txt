@@ -8,7 +8,10 @@ add_executable(ggj2k26_v3 ${SOURCES}
         code/product/inc/product.h
         code/product/src/product.c
         code/modules/inc/mod_power_supply.h
-        code/modules/src/mod_power_supply.c)
+        code/modules/src/mod_power_supply.c
+        code/modules/inc/mod_garbage.h
+        code/modules/src/mod_garbage.c
+        code/modules/src/mod_loader.c)
 target_include_directories( ggj2k26_v3 PRIVATE
                             inc
                             code/modules/inc

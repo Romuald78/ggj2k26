@@ -7,6 +7,7 @@
 #include "error.h"
 #include "parameters.h"
 #include "product.h"
+#include "utils.h"
 
 
 void initUser(UserData* p) {
@@ -58,7 +59,7 @@ void drawUser(Game* pGame) {
     Product* current_prod = p->products;
     while (current_prod != NULL){
         printf("\x1B[%d;%dH", current_prod->y, current_prod->x);
-        printf("\x1B[48;2;255;255;0m%s\x1B[0m", current_prod->type);
+        printBase(current_prod->type);
         current_prod = current_prod->pNext;
     }
 

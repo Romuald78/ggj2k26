@@ -46,16 +46,31 @@ void powerDraw  (Module* p) {
                         printf("🔴");
                     }
                     else {
-                        printf("⚫PWRON2"
-                               "PWRON2"
-                               "");
+                        printf("⚫");
                     }
                 }
                 else if (x==1){
                     printf("⚡");
                 }
                 else {
-                    printf("🆕");
+                    switch (p->powerId) {
+                        case 1:
+                            printf("1️⃣ ");
+                            break;
+                        case 2:
+                            printf("2️⃣ ");
+                            break;
+                        case 3:
+                            printf("3️⃣ ");
+                            break;
+                        case 4:
+                            printf("️4️⃣ ");
+                            break;
+                        default :
+                            printf("🔄");
+                            break;
+                    }
+
                 }
             }
         }

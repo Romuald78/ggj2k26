@@ -8,6 +8,7 @@
 #include <string.h>
 
 #include "error.h"
+#include "module.h"
 
 void teleportProduct(Product* p, int x0, int y0) {
     if (p != NULL) {
@@ -23,18 +24,34 @@ void moveProduct(Product* p, int dx, int dy) {
     }
 }
 
-Product* addProduct(Product* pList, char* type, int x0, int y0) {
+Product* addProduct(Product* pList, int type, int x0, int y0) {
     Product* pProd = NULL;
 
-    pProd = malloc(sizeof(Product));
+    pProd = calloc(1, sizeof(Product));
     if (pProd == NULL) {
         RAGE_QUIT(55, "Product malloc failed");
     }
 
-    strcpy(pProd->type, type);
+    pProd->type  = type;
     pProd->x     = 2 * x0;
     pProd->y     = y0;
     pProd->pNext = pList;
 
     return pProd;
+}
+
+
+int collisionProduct(Product* pList, int x0, int y0) {
+    if (pList == NULL) {
+        return 0;
+    }
+    Product* pProd = pList;
+    while (pProd != NULL) {
+        if (pProd->x == x0 && pProd->y == y0) {
+            // found already a product
+            return 1;
+        }
+        pProd = pProd->pNext;
+    }
+    return 0;
 }

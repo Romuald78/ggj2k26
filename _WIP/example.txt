@@ -2,9 +2,9 @@
 [LOADER]
 Commands : INCREASE/DECREASE speed (from 0 to 9)
 
-🔼⬛
+🔼⬛⬛
 2️⃣🪨⬜           1️⃣2️⃣3️⃣4️⃣5️⃣6️⃣7️⃣8️⃣9️⃣
-🔽⬛
+🔽⬛⬛
 
 ◀️2️⃣▶️
 ⬛🪨⬛  🪨🪵🔩🔗📦🛢️
@@ -140,7 +140,7 @@ H = 39
 🧱🧱🧱🧱🧱🧱🧱🧱🚪🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱
 
 🧱🚪🪟🪜🚧🪨🪵
-🚚🚛
+🚚🚛⛔
 🖥️💻🖨️📡📟
 📦🧳🎒👜🧰🛢️🕳️
 ⚙️🛠️🪚🪓🪝🔧🔩🪛🔗🧹🧽🧼🧴🚿🧯🧤🦺🥽
@@ -159,6 +159,8 @@ H = 39
 📍🔍🔎🌍🌎🌏🗺️🏁📮📬📭
  🔐🔒🔓🔑🛂🛃🪪🛡️
 😷🎭🥸👺👹🤡💀🤖👽🥷
+
+
 
 💥💣🧨🌋
 🔥🌡️❄️🧊💧
@@ -196,15 +198,39 @@ Police women are created randomly all over the whole area (random angle shall be
 if the thief escapes, randomly half of the goods are removed. 
 If the thief is caught, player can actially continue 
 
+COLLisions en sortie de conveyor seulement
+mode : todestroy = 1 permet d'afficher le warning bourrage destruction + decalage visuel pour eviter d'autres collisions =>> timer + todestroy = 2 : suppression de la liste en fin de frame
+blocage en sortie loader / junction
 
+💳
+💸
+💰
+🪙
 
+   🧻📦
+✂️ 👤👥
 
+🖌️ ⚪⚫🔴🟠🟡🟢🔵🟣✖️
 
+   ✖️
+💀 ⚪
+🦇 ⚫
+👺 🔴
+👹 🟠
+🥸 🟡
+👽 🟢
+🥶 🔵
+👾 🟣
 
+tOGGLE modes 1/2 couleurs (1 action)
+fenetre glissante des couleurs (1 / 2)
+   ✖️✖️
+🤡 ⚪🔴
+🎭 🔵🟡
+🤖 ⚫⚪
+🥷 ⚫🟠
+😈 🟣🔵
 
-
-
-
-
+Bad output : 🤮💩
 
 

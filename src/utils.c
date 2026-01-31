@@ -6,6 +6,7 @@
 #include "utils.h"
 
 #include "draw.h"
+#include "module.h"
 
 long gettime(){
     struct timespec ts;
@@ -45,3 +46,50 @@ void enable_echo() {
     tcsetattr(STDIN_FILENO, TCSANOW, &t);
 }
 
+void printBase(int type) {
+    switch (type) {
+        case MOD_BASE_1:
+            printf("🧻");
+            break;
+        case MOD_BASE_2:
+            printf("📦");
+            break;
+    }
+}
+
+void printSquareNumber(int nb) {
+    switch (nb) {
+        case 0:
+            printf("0️⃣ ");
+            break;
+        case 1:
+            printf("1️⃣ ");
+            break;
+        case 2:
+            printf("2️⃣ ");
+            break;
+        case 3:
+            printf("3️⃣ ");
+            break;
+        case 4:
+            printf("4️⃣ ");
+            break;
+        case 5:
+            printf("5️⃣ ");
+            break;
+        case 6:
+            printf("6️⃣ ");
+            break;
+        case 7:
+            printf("7️⃣ ");
+            break;
+        case 8:
+            printf("8️⃣ ");
+            break;
+        case 9:
+            printf("9️⃣ ");
+            break;
+        default:
+            printf("%d", nb);
+    }
+}

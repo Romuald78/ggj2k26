@@ -36,6 +36,20 @@ void initDraw(Game* pGame){
         }
         puts("");
     }
+    for (int i=0; i<=6; i++) {
+        printf("\x1B[%d;%dH", p->h-8+i, 1);
+        printf("                          ");
+        if (i==0 || i ==6) {
+            printf("🚧🚧");
+        }
+        else {
+            printf("    🏽🏽⛔");
+        }
+    }
+    for (int i=p->h-10; i<=p->h-9; i++) {
+        printf("\x1B[%d;%dH", i, 1);
+        printf("🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱");
+    }
 }
 
 void draw(Game* pGame, float delta_sec){

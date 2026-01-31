@@ -13,6 +13,11 @@ enum {
     MOD_NB_DIRS
 };
 
+enum {
+    MOD_BASE_1  = 1,
+    MOD_BASE_2
+};
+
 typedef struct _mod Module;
 
 typedef void (*ModuleUpdate)(Module* p, void* pData);
@@ -35,6 +40,9 @@ struct _mod{
     float        time;          // local time counter
     int          time_step;     // local time step, increased when time is more than speed
     int          running;       // is it running or is it stopped
+
+    int          load_elt;      // 1 means type 1 (1 color) / 2 means 2 colors
+    int          load_speed;    // speed of output : speed will be modified according to this integer value
     struct _mod* pNext;
 };
 
