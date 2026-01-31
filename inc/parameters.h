@@ -4,7 +4,9 @@
 #define SCREEN_W 78
 #define SCREEN_H 39
 
-#define SPEED_MIN 1.0
-#define SPEED_MAX 0.1
+#define SPEED_NOM 0.25
+#define SPEED_MIN 3.0
+#define SPEED_MAX (SPEED_NOM/2.0)
+
 
 #endif

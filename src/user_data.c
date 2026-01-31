@@ -63,7 +63,6 @@ void drawUser(Game* pGame) {
         current_prod = current_prod->pNext;
     }
 
-
     // set cursor at the bottom of the screen
     printf("\x1B[%d;1H\n", p->h);
 }

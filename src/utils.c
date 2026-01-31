@@ -49,10 +49,14 @@ void enable_echo() {
 void printBase(int type) {
     switch (type) {
         case MOD_BASE_1:
+            printf("\x1B[48;2;128;128;128m");
             printf("🧻");
+            printf("\x1B[0m");
             break;
         case MOD_BASE_2:
+            printf("\x1B[48;2;128;128;128m");
             printf("📦");
+            printf("\x1B[0m");
             break;
     }
 }

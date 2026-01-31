@@ -1,5 +1,6 @@
 #include <unistd.h>
 #include <fcntl.h>
+#include <stdlib.h>
 
 #include "draw.h"
 #include "stddef.h"
@@ -15,6 +16,7 @@
 #include "mod_power_supply.h"
 #include "mod_garbage.h"
 #include "mod_loader.h"
+#include "parameters.h"
 
 int main(int argc, char** argv){
 
@@ -62,27 +64,33 @@ int main(int argc, char** argv){
     ud.actions = addAction(ud.actions, "PWROFF4", ud.modules);
 
     // ========== LOADING + GARBAGE ==========
-    ud.modules = addGarbageModule(ud.modules, "PWR#4", 19, 34);
+    ud.modules = addGarbageModule(ud.modules, "PWR#4", 19, 28);
 
 
 
     // ========== LOADERS ==========
-    ud.modules = addLoaderModule(ud.modules, "LOADER#1", 4, 12, MOD_RIGHT, MOD_BASE_1);
+    ud.modules = addLoaderModule(ud.modules, "LOADER#1", 4, 10, MOD_RIGHT, MOD_BASE_1);
     ud.actions = addAction(ud.actions, "INCSPD1" , ud.modules);
     ud.actions = addAction(ud.actions, "DECSPD1", ud.modules);
     ud.actions = addAction(ud.actions, "TOGGLE1", ud.modules);
+    ud.modules = addConveyModule  (ud.modules, "CONV#1", 7, 11, 20, MOD_RIGHT, SPEED_NOM*(rand()%21+90)/100.0);
+    ud.actions = addAction(ud.actions, "PWRON1" , ud.modules);
+    ud.actions = addAction(ud.actions, "PWROFF1" , ud.modules);
 
-    ud.modules = addLoaderModule(ud.modules, "LOADER#2", 4, 22, MOD_RIGHT, MOD_BASE_1);
+    ud.modules = addLoaderModule(ud.modules, "LOADER#2", 4, 24, MOD_RIGHT, MOD_BASE_1);
     ud.actions = addAction(ud.actions, "INCSPD2" , ud.modules);
     ud.actions = addAction(ud.actions, "DECSPD2", ud.modules);
     ud.actions = addAction(ud.actions, "TOGGLE2", ud.modules);
+    ud.modules = addConveyModule  (ud.modules, "CONV#2", 7, 25, 20, MOD_RIGHT, SPEED_NOM);
+    ud.actions = addAction(ud.actions, "PWRON1" , ud.modules);
+    ud.actions = addAction(ud.actions, "PWROFF1" , ud.modules);
 
     ud.modules = addLoaderModule(ud.modules, "LOADER#3", 40, 4, MOD_DOWN, MOD_BASE_2);
     ud.actions = addAction(ud.actions, "INCSPD3" , ud.modules);
     ud.actions = addAction(ud.actions, "DECSPD3", ud.modules);
     ud.actions = addAction(ud.actions, "TOGGLE3", ud.modules);
 
-    ud.modules = addLoaderModule(ud.modules, "LOADER#4", 60, 4, MOD_DOWN, MOD_BASE_2);
+    ud.modules = addLoaderModule(ud.modules, "LOADER#4", 71, 4, MOD_DOWN, MOD_BASE_2);
     ud.actions = addAction(ud.actions, "INCSPD4" , ud.modules);
     ud.actions = addAction(ud.actions, "DECSPD4", ud.modules);
     ud.actions = addAction(ud.actions, "TOGGLE4", ud.modules);
@@ -94,13 +102,65 @@ int main(int argc, char** argv){
 
 
     // ======== NETWORKS ==========
-    ud.modules = addConveyModule  (ud.modules, "CONV#1", 7, 13, 20, MOD_RIGHT, 0.050);
-    ud.actions = addAction(ud.actions, "START1" , ud.modules);
-    ud.actions = addAction(ud.actions, "STOP1" , ud.modules);
+    ud.modules = addJunctionModule(ud.modules, "JUNC#1IA", 28, 11, MOD_RIGHT, SPEED_NOM);
 
-    ud.modules = addConveyModule  (ud.modules, "CONV#2", 7, 23, 20, MOD_RIGHT, 0.333);
-    ud.actions = addAction(ud.actions, "START2" , ud.modules);
-    ud.actions = addAction(ud.actions, "STOP2" , ud.modules);
+    ud.modules = addConveyModule  (ud.modules, "CONV#A", 30, 11, 10, MOD_RIGHT, SPEED_NOM);
+    ud.actions = addAction(ud.actions, "PWRON2" , ud.modules);
+    ud.actions = addAction(ud.actions, "PWROFF2" , ud.modules);
+
+    ud.modules = addJunctionModule(ud.modules, "JUNC#3AB", 41, 11, MOD_RIGHT, SPEED_NOM);
+
+    // todo pusher CUT top to split B1/B2
+    ud.modules = addConveyModule  (ud.modules, "CONV#B1", 43, 11, 13, MOD_RIGHT, SPEED_NOM);
+    ud.actions = addAction(ud.actions, "PWRON2" , ud.modules);
+    ud.actions = addAction(ud.actions, "PWROFF2" , ud.modules);
+
+    ud.modules = addConveyModule  (ud.modules, "CONV#B", 59, 11, 12, MOD_RIGHT, SPEED_NOM);
+    ud.actions = addAction(ud.actions, "PWRON2" , ud.modules);
+    ud.actions = addAction(ud.actions, "PWROFF2" , ud.modules);
+
+    ud.modules = addJunctionModule(ud.modules, "JUNC#B4C", 72, 11, MOD_DOWN, SPEED_NOM);
+
+    ud.modules = addConveyModule  (ud.modules, "CONV#C", 72, 13, 7, MOD_DOWN, SPEED_NOM);
+    ud.actions = addAction(ud.actions, "PWRON2" , ud.modules);
+    ud.actions = addAction(ud.actions, "PWROFF2" , ud.modules);
+
+
+    ud.modules = addJunctionModule(ud.modules, "JUNC#CD", 72, 21, MOD_DOWN, SPEED_NOM);
+
+    ud.modules = addConveyModule  (ud.modules, "CONV#D", 72, 23, 10, MOD_DOWN, SPEED_NOM);
+    ud.actions = addAction(ud.actions, "PWRON2" , ud.modules);
+    ud.actions = addAction(ud.actions, "PWROFF2" , ud.modules);
+
+    ud.modules = addJunctionModule(ud.modules, "JUNC#DE", 72, 34, MOD_LEFT, SPEED_NOM);
+
+    ud.modules = addConveyModule  (ud.modules, "CONV#E", 60, 34, 11, MOD_LEFT, SPEED_NOM);
+    ud.actions = addAction(ud.actions, "PWRON2" , ud.modules);
+    ud.actions = addAction(ud.actions, "PWROFF2" , ud.modules);
+
+    ud.modules = addJunctionModule(ud.modules, "JUNC#EF", 58, 34, MOD_LEFT, SPEED_NOM);
+
+    ud.modules = addConveyModule  (ud.modules, "CONV#F", 47, 34, 10, MOD_LEFT, SPEED_NOM);
+    ud.actions = addAction(ud.actions, "PWRON2" , ud.modules);
+    ud.actions = addAction(ud.actions, "PWROFF2" , ud.modules);
+
+    // todo ADD PUSH TOP TO PAINT
+
+    ud.modules = addConveyModule  (ud.modules, "CONV#G", 30, 34, 14, MOD_LEFT, SPEED_NOM);
+    ud.actions = addAction(ud.actions, "PWRON2" , ud.modules);
+    ud.actions = addAction(ud.actions, "PWROFF2" , ud.modules);
+
+    ud.modules = addJunctionModule(ud.modules, "JUNC#GH", 28, 34, MOD_UP, SPEED_NOM);
+
+    ud.modules = addConveyModule  (ud.modules, "CONV#H", 28, 27, 6, MOD_UP, SPEED_NOM);
+    ud.actions = addAction(ud.actions, "PWRON2" , ud.modules);
+    ud.actions = addAction(ud.actions, "PWROFF2" , ud.modules);
+
+    ud.modules = addJunctionModule(ud.modules, "JUNC#2HI", 28, 25, MOD_UP, SPEED_NOM/1.5);
+
+    ud.modules = addConveyModule  (ud.modules, "CONV#I", 28, 13, 11, MOD_UP, SPEED_NOM);
+    ud.actions = addAction(ud.actions, "PWRON2" , ud.modules);
+    ud.actions = addAction(ud.actions, "PWROFF2" , ud.modules);
 
 
     /*

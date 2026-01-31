@@ -25,7 +25,7 @@ void garbageDraw  (Module* p) {
             printf("\x1B[%d;%dH", p->y0 + y, p->x0);
             for (int x=0; x<p->size; x++) {
                 // border
-                if (x==1 && y==0) {
+                if (x==1 && y==p->size-1) {
                     printf("⬜");
                 }
                 else if (x == 0 || y == 0 || x == p->size-1 || y == p->size-1) {

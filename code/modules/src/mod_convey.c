@@ -104,11 +104,11 @@ void conveyAction(Module* p, char* action) {
         RAGE_QUIT(61, "Module or string pointer null");
     }
     // compare strings
-    if (!strcmp("STOP", action)) {
-        p->running = 0;
-    }
-    else if (!strcmp("START", action)) {
+    if (!strcmp("PWRON", action)) {
         p->running = 1;
+    }
+    else if (!strcmp("PWROFF", action)) {
+        p->running = 0;
     }
 }
 

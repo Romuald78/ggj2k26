@@ -12,6 +12,12 @@ Commands : INCREASE/DECREASE speed (from 0 to 9)
 
 
 
+
+⬛⬛⬛
+⬛🔂⬛  🪨🪵🔩🔗📦🛢️
+⬛⬜⬛
+
+
 [CONVEYOR]
 horizontal vertical
 Commands : START / STOP
