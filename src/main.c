@@ -62,7 +62,8 @@ int main(int argc, char** argv){
     ud.actions = addAction(ud.actions, "PWROFF4", ud.modules);
 
     // ========== LOADING + GARBAGE ==========
-    ud.modules = addGarbageModule(ud.modules, "PWR#4", 40, 4);
+    ud.modules = addGarbageModule(ud.modules, "GARBAGE", 40, 4);
+    ud.actions = addAction(ud.actions, "TRASH" , ud.modules);
 
 
 

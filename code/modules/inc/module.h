@@ -45,6 +45,7 @@ struct _mod{
                                      // for cutter 1 means 1 cut, 2 means 2 cuts
                                      // for painter, means numbezr of colors (1 or 2)
     int          load_speed;    // speed of output : speed will be modified according to this integer value
+    int          garbage;
 
     struct _mod* pNext;
 };

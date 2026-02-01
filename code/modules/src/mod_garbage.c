@@ -14,6 +14,15 @@ void garbageUpdate(Module* p, void* pData) {
     if (p == NULL || pData == NULL) {
         RAGE_QUIT(60, "Module pointer null");
     }
+    Product* pProd = ((UserData*)pData)->products;
+    while (pProd != NULL) {
+        if (p->x0 <= pProd->x && pProd->x <= p->x0+2*2 && p->y0 <= pProd->y && pProd->y <= p->y0+2) {
+            fprintf(stderr, "product garbage %d/%d/%d\n", pProd->x, pProd->y, pProd->toDestroy);
+            pProd->toDestroy = 2;
+        }
+        pProd = pProd->pNext;
+    }
+    //*/
 }
 
 //=========================================================
@@ -31,8 +40,11 @@ void garbageDraw  (Module* p) {
                 else if (x == 0 || y == 0 || x == p->size-1 || y == p->size-1) {
                     printf("⬛");
                 }
-                else{
+                else if (p->garbage != 0){
                     printf("♻️ ");
+                }
+                else {
+                    printf("  ");
                 }
             }
         }
@@ -46,16 +58,20 @@ void garbageAction(Module* p, char* action) {
     if (p == NULL || action == NULL) {
         RAGE_QUIT(61, "Module or string pointer null");
     }
+    if (strcmp(action, "TRASH") == 0) {
+        p->garbage = 1;
+    }
 }
 
 //=========================================================
 // CONSTRUCTOR
 //=========================================================
 Module* addGarbageModule(Module* pList, char* name, int x0, int y0) {
-    Module* p = createModule(name, x0, y0, 3, MOD_UP, 0, garbageUpdate, garbageDraw, garbageAction);
+    Module* p = createModule(name, x0, y0, 3, MOD_UP, 0.5, garbageUpdate, garbageDraw, garbageAction);
     if (p == NULL) {
         RAGE_QUIT(70, "create convey failed");
     }
+    p->running = 1;
     p->powerId = 1;
     p->pNext   = pList;
     return p;

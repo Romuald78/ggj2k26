@@ -39,10 +39,36 @@ int updateUser(Game* pGame, float delta) {
                 }
             }
         }
-
         // Go to next module
         current_mod = current_mod->pNext;
     }
+
+    // remove first if needed
+    while (p->products != NULL) {
+        if (p->products->toDestroy == 2) {
+            Product* tmp = p->products;
+            p->products = p->products->pNext;
+            tmp->pNext = NULL;
+            free(tmp);
+        }
+        else {
+            break;
+        }
+    }
+    Product* pProd = p->products;
+    while (pProd != NULL && pProd->pNext != NULL) {
+        Product* pNext = pProd->pNext;
+        if (pNext->toDestroy == 2) {
+            Product* tmp = pNext;;
+            pProd->pNext = pNext->pNext;
+            tmp->pNext = NULL;
+            free(tmp);
+        }
+        else {
+            pProd = pProd->pNext;
+        }
+    }
+
     return 0;
 }
 
