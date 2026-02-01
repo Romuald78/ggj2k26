@@ -53,11 +53,11 @@ void junctionUpdate(Module* p, void* pData) {
 void junctionDraw  (Module* p) {
     if (p != NULL) {
         printf("\x1B[%d;%dH", p->y0-1, p->x0-2);
-        printf("⬛⬜⬛");
+        printf("⬛🟦⬛");
         printf("\x1B[%d;%dH", p->y0+1, p->x0-2);
-        printf("⬛⬜⬛");
+        printf("⬛🟦⬛");
         printf("\x1B[%d;%dH", p->y0, p->x0-2);
-        printf("⬜");
+        printf("🟦");
         switch (p->orient) {
             case MOD_LEFT:
                 printf("⬅️ ");
@@ -75,7 +75,7 @@ void junctionDraw  (Module* p) {
                 printf("??");
                 break;
         }
-        printf("⬜");
+        printf("🟦");
     }
 }
 

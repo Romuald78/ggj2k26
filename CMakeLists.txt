@@ -11,7 +11,11 @@ add_executable(ggj2k26_v3 ${SOURCES}
         code/modules/src/mod_power_supply.c
         code/modules/inc/mod_garbage.h
         code/modules/src/mod_garbage.c
-        code/modules/src/mod_loader.c)
+        code/modules/src/mod_loader.c
+        code/modules/src/mod_cut.c
+        code/modules/src/mod_paint.c
+        code/modules/src/mod_deliver.c
+        code/modules/src/mod_push.c)
 target_include_directories( ggj2k26_v3 PRIVATE
                             inc
                             code/modules/inc

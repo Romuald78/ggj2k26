@@ -24,7 +24,7 @@ void moveProduct(Product* p, int dx, int dy) {
     }
 }
 
-Product* addProduct(Product* pList, int type, int x0, int y0) {
+Product* addProduct(Product* pList, char* type, int x0, int y0) {
     Product* pProd = NULL;
 
     pProd = calloc(1, sizeof(Product));

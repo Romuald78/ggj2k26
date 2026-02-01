@@ -44,8 +44,12 @@ void loaderUpdate(Module* p, void* pData) {
         return;
     }
     // no product found : create
+    char* prodstr = "📦";
+    if (p->specific_mode == 1) {
+        prodstr = "🧻";
+    }
     ((UserData*)pData)->products = addProduct( ((UserData*)pData)->products,
-                                          p->load_elt, p->x0/2 + dx, p->y0 + dy);
+                                          prodstr, p->x0/2 + dx, p->y0 + dy);
 }
 
 //=========================================================
@@ -59,8 +63,8 @@ void loaderDraw  (Module* p) {
                 printf("🔼⬛⬛");
                 printf("\x1B[%d;%dH", p->y0 + 1, p->x0);
                 printSquareNumber(p->load_speed);
-                printBase(p->load_elt);
-                printf("⬜");
+                printBase(p->specific_mode);
+                printf("🟦");
                 printf("\x1B[%d;%dH", p->y0 + 2, p->x0);
                 printf("🔽⬛⬛");
                 break;
@@ -71,27 +75,27 @@ void loaderDraw  (Module* p) {
                 printf("▶️");
                 printf("\x1B[%d;%dH", p->y0 + 1, p->x0);
                 printf("⬛");
-                printBase(p->load_elt);
+                printBase(p->specific_mode);
                 printf("⬛");
                 printf("\x1B[%d;%dH", p->y0 + 2, p->x0);
-                printf("⬛⬜⬛");
+                printf("⬛🟦⬛");
                 break;
             case MOD_LEFT:
                 printf("\x1B[%d;%dH", p->y0 + 0, p->x0);
                 printf("⬛⬛🔼");
                 printf("\x1B[%d;%dH", p->y0 + 1, p->x0);
-                printf("⬜");
-                printBase(p->load_elt);
+                printf("🟦");
+                printBase(p->specific_mode);
                 printSquareNumber(p->load_speed);
                 printf("\x1B[%d;%dH", p->y0 + 2, p->x0);
                 printf("⬛⬛🔽");
                 break;
             case MOD_UP:
                 printf("\x1B[%d;%dH", p->y0 + 0, p->x0);
-                printf("⬛⬜⬛");
+                printf("⬛🟦⬛");
                 printf("\x1B[%d;%dH", p->y0 + 1, p->x0);
                 printf("⬛");
-                printBase(p->load_elt);
+                printBase(p->specific_mode);
                 printf("⬛");
                 printf("\x1B[%d;%dH", p->y0 + 2, p->x0);
                 printf("◀️ ");
@@ -125,9 +129,9 @@ void loaderAction(Module* p, char* action) {
         }
     }
     else if (!strcmp("TOGGLE", action)) {
-        p->load_elt++;
-        if (p->load_elt > 2) {
-            p->load_elt = 1;
+        p->specific_mode++;
+        if (p->specific_mode > 2) {
+            p->specific_mode = 1;
         }
     }
     //--------------------------------
@@ -146,7 +150,7 @@ Module* addLoaderModule(Module* pList, char* name, int x0, int y0, int orient, i
     if (p == NULL) {
         RAGE_QUIT(70, "create convey failed");
     }
-    p->load_elt   = type;
+    p->specific_mode   = type;
     p->load_speed = 0;
 
     p->powerId = 1;

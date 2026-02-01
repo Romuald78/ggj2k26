@@ -211,7 +211,17 @@ blocage en sortie loader / junction
 💳
 💸
 💰
-🪙
+🪙🔳🔳🔳🔳🔳
+RIGHT1
+LEFT2
+LEFT2
+LEFT2
+LEFT2
+LEFT2
+LEFT2
+RIGHT2
+UPWARD1
+LEFT1
 
    🧻📦
 ✂️ 👤👥
@@ -219,24 +229,78 @@ blocage en sortie loader / junction
 🖌️ ⚪⚫🔴🟠🟡🟢🔵🟣✖️
 
    ✖️
-💀 ⚪
-🦇 ⚫
-👺 🔴
+💀 ⚪v
+🦇 ⚫v
+👺 🔴v
 👹 🟠
-🥸 🟡
+🥸 🟡v
 👽 🟢
-🥶 🔵
+🥶 🔵v
 👾 🟣
 
 tOGGLE modes 1/2 couleurs (1 action)
 fenetre glissante des couleurs (1 / 2)
    ✖️✖️
-🤡 ⚪🔴
-🎭 🔵🟡
-🤖 ⚫⚪
+🤡 ⚪🔴 v
+🎭 🔵🟡 v
+🤖 ⚫⚪ v
 🥷 ⚫🟠
 😈 🟣🔵
 
 Bad output : 🤮💩
+
+
+⬛⬛⬛⬛⬛
+⬛🟦🟦🟦⬛
+⬜✂️🟦✂️⬜
+⬛🟦🟦🟦⬛
+⬛⬛⬛⬛⬛
+
+⬛⬛⬛⬛⬛
+⬛🟦🟦🟦⬛
+⬜🟦✂️🟦⬜
+⬛🟦🟦🟦⬛
+⬛⬛⬛⬛⬛
+
+
+⬛⬛⬛⬛⬛
+⬛🖌️⬛🖌️⬛
+⬜✖️⬛✖️⬜
+⬛⬛⬛⬛⬛
+
+⬛⬛⬛⬛⬛
+⬛⬛🖌️⬛⬛
+⬜⬛✖️⬛⬜
+⬛⬛⬛⬛⬛
+
+
+            pProd = pProd->pNext;
+
+⬛⬛⬛⬛⬛
+⬛🔼🔽⏹️⬛
+
+⬛⬜⬛
+⬜↔️⬜
+⬛🔼⬛
+
+⬛⬜⬛
+▶️↕️⬛
+⬛⬜⬛
+
+⬛🔽⬛
+⬜↔️⬜
+⬛⬜⬛
+
+⬛⬜⬛
+⬛↕️◀️
+⬛⬜⬛
+
+
+PWRON1
+PWRON2
+INCSPD1
+
+
+🧱🧱    
 
 

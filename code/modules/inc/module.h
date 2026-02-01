@@ -41,8 +41,11 @@ struct _mod{
     int          time_step;     // local time step, increased when time is more than speed
     int          running;       // is it running or is it stopped
 
-    int          load_elt;      // 1 means type 1 (1 color) / 2 means 2 colors
+    int          specific_mode;      // 1 means type 1 (1 color) / 2 means 2 colors
+                                     // for cutter 1 means 1 cut, 2 means 2 cuts
+                                     // for painter, means numbezr of colors (1 or 2)
     int          load_speed;    // speed of output : speed will be modified according to this integer value
+
     struct _mod* pNext;
 };
 

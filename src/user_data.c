@@ -29,7 +29,9 @@ int updateUser(Game* pGame, float delta) {
         if (current_mod->running) {
             current_mod->time += delta;
             if (current_mod->speed > 0) {
+                
                 while (current_mod->time >= current_mod->speed) {
+                    fprintf(stderr, "UPDATE module '%s' \n", current_mod->pName);
                     current_mod->time -= current_mod->speed;
                     current_mod->time_step += 1;
                     // Update specific module behaviour
@@ -59,7 +61,7 @@ void drawUser(Game* pGame) {
     Product* current_prod = p->products;
     while (current_prod != NULL){
         printf("\x1B[%d;%dH", current_prod->y, current_prod->x);
-        printBase(current_prod->type);
+        printf("%s", current_prod->type);
         current_prod = current_prod->pNext;
     }
 

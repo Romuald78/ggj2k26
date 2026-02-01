@@ -75,6 +75,7 @@ long frame(Game* pGame, long nb_usec){
     // Locals
     int   quit   = 0;
     float nb_sec = nb_usec/1000000.0;
+
     // Check
     checkGame(pGame);
     // events-update-draw
@@ -104,6 +105,9 @@ void gameLoop(Game* pGame){
         delta = start - prev;
         prev  = start;
         // Frame process (events, update, draw)
+        if (delta > 1000000) {
+            delta = 0.016666;
+        }
         quit  = frame(pGame, delta);
         // Wait to keep a 60FPS rate
         end  = gettime();

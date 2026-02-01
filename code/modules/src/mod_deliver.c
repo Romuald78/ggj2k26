@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "mod_power_supply.h"
+#include "mod_deliver.h"
 #include "error.h"
 #include "user_data.h"
 #include "product.h"
@@ -10,7 +10,7 @@
 //=========================================================
 // UPDATE callback
 //=========================================================
-void garbageUpdate(Module* p, void* pData) {
+void deliverUpdate(Module* p, void* pData) {
     if (p == NULL || pData == NULL) {
         RAGE_QUIT(60, "Module pointer null");
     }
@@ -19,44 +19,37 @@ void garbageUpdate(Module* p, void* pData) {
 //=========================================================
 // DRAW callback
 //=========================================================
-void garbageDraw  (Module* p) {
+void deliverDraw  (Module* p) {
     if (p != NULL) {
-        for (int y=0; y<p->size; y++) {
-            printf("\x1B[%d;%dH", p->y0 + y, p->x0);
-            for (int x=0; x<p->size; x++) {
-                // border
-                if (x==1 && y==p->size-1) {
-                    printf("🟦");
-                }
-                else if (x == 0 || y == 0 || x == p->size-1 || y == p->size-1) {
-                    printf("⬛");
-                }
-                else{
-                    printf("♻️ ");
-                }
-            }
-        }
+        printf("\x1B[%d;%dH", p->y0+4, p->x0);
+        printf("⬛⬛⬛⬛⬛");
     }
 }
 
 //=========================================================
 // ACTION callback
 //=========================================================
-void garbageAction(Module* p, char* action) {
+void deliverAction(Module* p, char* action) {
     if (p == NULL || action == NULL) {
         RAGE_QUIT(61, "Module or string pointer null");
+    }
+    // compare strings
+    if (!strcmp("xxxxx", action)) {
+        p->running = 1;
+    }
+    else if (!strcmp("xxxffxx", action)) {
+        p->running = 0;
     }
 }
 
 //=========================================================
 // CONSTRUCTOR
 //=========================================================
-Module* addGarbageModule(Module* pList, char* name, int x0, int y0) {
-    Module* p = createModule(name, x0, y0, 3, MOD_UP, 0, garbageUpdate, garbageDraw, garbageAction);
+Module* addDeliverModule(Module* pList, char* name, int x0, int y0, float speed) {
+    Module* p = createModule(name, x0, y0, 5, MOD_LEFT, speed, deliverUpdate, deliverDraw, deliverAction);
     if (p == NULL) {
-        RAGE_QUIT(70, "create convey failed");
+        RAGE_QUIT(70, "create deliver failed");
     }
-    p->powerId = 1;
-    p->pNext   = pList;
+    p->pNext = pList;
     return p;
 }

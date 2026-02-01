@@ -7,6 +7,6 @@
 
 #include "module.h"
 
-Module* addLoaderModule(Module* pList, char* name, int x0, int y0, int orient, int type);
+Module*  addLoaderModule(Module* pList, char* name, int x0, int y0, int orient, int type);
 
 #endif
