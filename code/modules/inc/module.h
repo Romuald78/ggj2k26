@@ -60,6 +60,7 @@ struct _mod{
     int          garbage;
 
     int          color;         // enum
+    int          color2;         // enum
     struct _mod* pNext;
 };
 

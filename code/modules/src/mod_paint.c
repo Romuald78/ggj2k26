@@ -10,42 +10,66 @@
 //=========================================================
 // UPDATE callback
 //=========================================================
+
+char* getRandomBad() {
+    if ( rand()%101 <= 50) {
+        return "💩";
+    }
+    else {
+        return "🤮";
+    }
+}
+
+char* getColorMask1(int clr) {
+    switch (clr) {
+        case WHITE:
+            return "💀";
+        case BLACK:
+            return "🦇";
+        case RED:
+            return "👺";
+        case ORANGE:
+            return "👹";
+        case YELLOW:
+            return "🥸";
+        case GREEN:
+            return "👽";
+        case BLUE:
+            return "🥶";
+        case PURPLE:
+            return "👾";
+        default:
+            return getRandomBad();
+    }
+}
+
 void paintUpdate(Module* p, void* pData) {
     if (p == NULL || pData == NULL) {
         RAGE_QUIT(60, "Module pointer null");
     }
 
-    /*
+    //*
     Product* pProd = ((UserData*)pData)->products;
     while (pProd != NULL) {
         if (p->x0 <= pProd->x && pProd->x <= p->x0 + 4*2 && p->y0 <= pProd->y  && pProd->y <= p->y0+4) {
             if(p->specific_mode % 2 == 1) {
-                if (strcmp(pProd->type, "🧻") == 0) {
-                    pProd->type = "👤";
-                }
-                else if (rand()%101 <= 50) {
-                    pProd->type = "💩";
-                }
-                else {
-                    pProd->type = "🤮";
+                if (strcmp(pProd->type, "👤") == 0) {
+                    pProd->type = getColorMask1(p->color);
                 }
             }
             else  {
-                if (strcmp(pProd->type, "📦") == 0) {
-                    pProd->type = "👥";
-                }
-                else if (rand()%101 <= 50) {
-                    pProd->type = "💩";
+                if (strcmp(pProd->type, "👥") == 0) {
+                    // TODO  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! !!!!
                 }
                 else {
-                    pProd->type = "🤮";
+                    pProd->type = getRandomBad();
                 }
             }
             pProd->x += 5 * 2;
         }
         pProd = pProd->pNext;
     }
-    */
+    //*/
 
 
 }
@@ -80,7 +104,8 @@ char* getColorStr(int clr) {
 void paintDraw  (Module* p) {
     if (p != NULL) {
 
-        char* clr = getColorStr(p->color);
+        char* clr  = getColorStr(p->color);
+        char* clr2 = getColorStr(p->color2);
 
 
         printf("\x1B[%d;%dH", p->y0, p->x0);
@@ -94,7 +119,7 @@ void paintDraw  (Module* p) {
         else {
             printf("🟩🖌️ ⬛🖌️ 🟩");
             printf("\x1B[%d;%dH", p->y0+2, p->x0);
-            printf("🟦%s⬛%s🟦", clr, clr);
+            printf("🟦%s⬛%s🟦", clr, clr2);
         }
         printf("\x1B[%d;%dH", p->y0+3, p->x0);
         printf("🟩🟩🟩🟩🟩");
@@ -112,34 +137,42 @@ void paintAction(Module* p, char* action) {
     if (!strcmp("PAINT", action)) {
         p->specific_mode = !p->specific_mode;
     }
-    else if (!strcmp("NONE", action)) {
-        p->color = NONE;
+    else {
+        int tmp = p->color;
+        if (!strcmp("NONE", action)) {
+            p->color  = NONE;
+            p->color2 = NONE;
+            tmp = NONE;
+        }
+        else if (!strcmp("WHITE", action)) {
+            p->color = WHITE;
+        }
+        else if (!strcmp("BLACK", action)) {
+            p->color = BLACK;
+        }
+        else if (!strcmp("RED", action)) {
+            p->color = RED;
+        }
+        else if (!strcmp("ORANGE", action)) {
+            p->color = ORANGE;
+        }
+        else if (!strcmp("YELLOW", action)) {
+            p->color = YELLOW;
+        }
+        else if (!strcmp("GREEN", action)) {
+            p->color = GREEN;
+        }
+        else if (!strcmp("BLUE", action)) {
+            p->color = BLUE;
+        }
+        else if (!strcmp("PURPLE", action)) {
+            p->color = PURPLE;
+        }
+        else {
+            return;
+        }
+        p->color2 = tmp;
     }
-    else if (!strcmp("WHITE", action)) {
-        p->color = WHITE;
-    }
-    else if (!strcmp("BLACK", action)) {
-        p->color = BLACK;
-    }
-    else if (!strcmp("RED", action)) {
-        p->color = RED;
-    }
-    else if (!strcmp("ORANGE", action)) {
-        p->color = ORANGE;
-    }
-    else if (!strcmp("YELLOW", action)) {
-        p->color = YELLOW;
-    }
-    else if (!strcmp("GREEN", action)) {
-        p->color = GREEN;
-    }
-    else if (!strcmp("BLUE", action)) {
-        p->color = BLUE;
-    }
-    else if (!strcmp("PURPLE", action)) {
-        p->color = PURPLE;
-    }
-
 }
 
 //=========================================================
