@@ -20,26 +20,62 @@ char* getRandomBad() {
     }
 }
 
-char* getColorMask1(int clr) {
+void getColorMask2(int c1, int c2, char** pStr) {
+    int tmp;
+    if (c1 > c2) {
+        tmp =c1;
+        c1 = c2;
+        c2 = tmp;
+    }
+    if (c1 == WHITE && c2 == RED) {
+        *pStr = "🤡";
+    }
+    else if (c1 == YELLOW && c2 == BLUE) {
+        *pStr = "🎭";
+    }
+    else if (c1 == WHITE && c2 == BLACK) {
+        *pStr = "🤖";
+    }
+    else if (c1 == NONE && c2 == NONE) {
+        // do nothing : ok
+    }
+    else{
+        *pStr = getRandomBad();
+    }
+}
+
+
+void getColorMask1(int clr, char** pStr) {
     switch (clr) {
         case WHITE:
-            return "💀";
+            *pStr = "💀";
+            break;
         case BLACK:
-            return "🦇";
+            *pStr = "🦇";
+            break;
         case RED:
-            return "👺";
+            *pStr = "👺";
+            break;
         case ORANGE:
-            return "👹";
+            *pStr = "👹";
+            break;
         case YELLOW:
-            return "🥸";
+            *pStr = "🥸";
+            break;
         case GREEN:
-            return "👽";
+            *pStr = "👽";
+            break;
         case BLUE:
-            return "🥶";
+            *pStr = "🥶";
+            break;
         case PURPLE:
-            return "👾";
+            *pStr = "👾";
+            break;
+        case NONE:
+            // do nothing : ok
+            break;
         default:
-            return getRandomBad();
+            *pStr = getRandomBad();
     }
 }
 
@@ -54,18 +90,21 @@ void paintUpdate(Module* p, void* pData) {
         if (p->x0 <= pProd->x && pProd->x <= p->x0 + 4*2 && p->y0 <= pProd->y  && pProd->y <= p->y0+4) {
             if(p->specific_mode % 2 == 1) {
                 if (strcmp(pProd->type, "👤") == 0) {
-                    pProd->type = getColorMask1(p->color);
-                }
-            }
-            else  {
-                if (strcmp(pProd->type, "👥") == 0) {
-                    // TODO  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! !!!!
+                    getColorMask1(p->color, &(pProd->type));
                 }
                 else {
                     pProd->type = getRandomBad();
                 }
             }
-            pProd->x += 5 * 2;
+            else  {
+                if (strcmp(pProd->type, "👥") == 0) {
+                    getColorMask2(p->color, p->color2, &(pProd->type));
+                }
+                else {
+                    pProd->type = getRandomBad();
+                }
+            }
+            pProd->x -= 5 * 2;
         }
         pProd = pProd->pNext;
     }
@@ -134,35 +173,35 @@ void paintAction(Module* p, char* action) {
         RAGE_QUIT(61, "Module or string pointer null");
     }
     // compare strings
-    if (!strcmp("PAINT", action)) {
+    if (!strcmp("STEP", action)) {
         p->specific_mode = !p->specific_mode;
     }
     else {
         int tmp = p->color;
-        if (!strcmp("NONE", action)) {
+        if (!strcmp("ABORT", action)) {
             p->color  = NONE;
             p->color2 = NONE;
             tmp = NONE;
         }
-        else if (!strcmp("WHITE", action)) {
+        else if (!strcmp("WAIT", action)) {
             p->color = WHITE;
         }
-        else if (!strcmp("BLACK", action)) {
+        else if (!strcmp("LOCK", action)) {
             p->color = BLACK;
         }
-        else if (!strcmp("RED", action)) {
+        else if (!strcmp("PURGE", action)) {
             p->color = RED;
         }
         else if (!strcmp("ORANGE", action)) {
             p->color = ORANGE;
         }
-        else if (!strcmp("YELLOW", action)) {
+        else if (!strcmp("PICK", action)) {
             p->color = YELLOW;
         }
         else if (!strcmp("GREEN", action)) {
             p->color = GREEN;
         }
-        else if (!strcmp("BLUE", action)) {
+        else if (!strcmp("COOL", action)) {
             p->color = BLUE;
         }
         else if (!strcmp("PURPLE", action)) {

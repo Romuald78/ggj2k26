@@ -114,14 +114,14 @@ void loaderAction(Module* p, char* action) {
         RAGE_QUIT(61, "Module or string pointer null");
     }
     // compare strings
-    if (!strcmp("INCSPD", action)) {
+    if (!strcmp("START", action) || !strcmp("RIGHT", action)) {
         p->load_speed++;
         if (p->load_speed >= 9) {
             p->load_speed = 9;
         }
         p->running = 1;
     }
-    else if (!strcmp("DECSPD", action)) {
+    else if (!strcmp("STOP", action) || !strcmp("LEFT", action)) {
         p->load_speed--;
         if (p->load_speed <= 0) {
             p->load_speed = 0;

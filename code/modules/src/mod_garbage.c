@@ -55,9 +55,7 @@ void garbageAction(Module* p, char* action) {
     if (p == NULL || action == NULL) {
         RAGE_QUIT(61, "Module or string pointer null");
     }
-    if (strcmp(action, "TRASH") == 0) {
-        p->garbage = 1;
-    }
+
 }
 
 //=========================================================

@@ -77,7 +77,7 @@ void cutterAction(Module* p, char* action) {
         RAGE_QUIT(61, "Module or string pointer null");
     }
     // compare strings
-    if (!strcmp("CUT", action)) {
+    if (!strcmp("CUTTER", action)) {
         p->specific_mode = !p->specific_mode;
     }
 

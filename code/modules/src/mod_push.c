@@ -143,7 +143,7 @@ void pushAction(Module* p, char* action) {
         RAGE_QUIT(61, "Module or string pointer null");
     }
     // compare strings
-    if (!strcmp("PUSH", action)) {
+    if (!strcmp("OPEN", action) || !strcmp("MARK", action) || !strcmp("EJECT", action) || !strcmp("CLEAN", action)) {
         p->specific_mode = 2;
     }
 }

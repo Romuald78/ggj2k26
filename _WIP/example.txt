@@ -296,11 +296,37 @@ Bad output : 🤮💩
 ⬛⬜⬛
 
 
-PWRON1
-PWRON2
-INCSPD1
+=============================
+Creer module LIVRAISONS
+=============================
+Dans l'update rajouter le code pour amener des camions (tableau de structures avec string demandée, position du camion, etat (arrivée, attente, livré, depart, vide) et etat livraison ok/nok) 
+chercher un camion correspondant au product qui vient d'être livré
+détruire le product dans tous les cas
+
+afficher sac d'or si ok
+afficher billet qui s'envole si nok (+ anim ?)
+quand le camion s'en va
+
+=============================
+Collision
+=============================
+code qui parcourt tous les products et check les suivant pour collisions : destruction des 2 dans ce cas (marquage pour destruction) en supprime 1 + modifie l'autre pour un warning pour indiquer que le colis est abimé
 
 
-🧱🧱    
+=============================
+BUG deplacement sur les conveyors
+=============================
+Pas trop d'idées pour le moment sur la cause possible
+
+=============================
+Ajouter un critere de score 
+=============================
+var dans game + affichage tout le temps
+depense qd loader actif (modif)
+gain si livraison ok (modif)
+
+
+
+
 
 

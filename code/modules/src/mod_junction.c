@@ -87,11 +87,11 @@ void junctionAction(Module* pMod, char* actname) {
         RAGE_QUIT(61, "Module or string pointer null");
     }
     // compare strings
-    if (!strcmp("TURNL", actname)) {
+    if (!strcmp("TURNLEFT", actname)) {
         pMod->orient += MOD_NB_DIRS - 1;
         pMod->orient %= MOD_NB_DIRS;
     }
-    else if (!strcmp("TURNR", actname)) {
+    else if (!strcmp("TURNRIGHT", actname)) {
         pMod->orient += 1;
         pMod->orient %= MOD_NB_DIRS;
     }

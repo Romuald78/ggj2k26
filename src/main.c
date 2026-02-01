@@ -63,58 +63,54 @@ int main(int argc, char** argv){
 
     // ========== LOADING + GARBAGE ==========
     ud.modules = addGarbageModule(ud.modules, "GARBAGE", 40, 4);
-    ud.actions = addAction(ud.actions, "TRASH" , ud.modules);
+    ud.actions = addAction(ud.actions, "CLEAN" , ud.modules);
 
 
 
     // ========== LOADERS ==========
     ud.modules = addLoaderModule(ud.modules, "LOADER#1", 4, 10, MOD_RIGHT, MOD_BASE_1);
-    ud.actions = addAction(ud.actions, "INCSPD1" , ud.modules);
-    ud.actions = addAction(ud.actions, "DECSPD1", ud.modules);
-    ud.actions = addAction(ud.actions, "TOGGLE1", ud.modules);
+    ud.actions = addAction(ud.actions, "START1" , ud.modules);
+    ud.actions = addAction(ud.actions, "STOP1", ud.modules);
     ud.modules = addConveyModule  (ud.modules, "CONV#1", 7, 11, 20, MOD_RIGHT, SPEED_NOM*(rand()%21+90)/100.0);
     ud.actions = addAction(ud.actions, "PWRON1" , ud.modules);
     ud.actions = addAction(ud.actions, "PWROFF1" , ud.modules);
 
     ud.modules = addLoaderModule(ud.modules, "LOADER#2", 4, 20, MOD_RIGHT, MOD_BASE_1);
-    ud.actions = addAction(ud.actions, "INCSPD2" , ud.modules);
-    ud.actions = addAction(ud.actions, "DECSPD2", ud.modules);
-    ud.actions = addAction(ud.actions, "TOGGLE2", ud.modules);
+    ud.actions = addAction(ud.actions, "START2" , ud.modules);
+    ud.actions = addAction(ud.actions, "STOP2", ud.modules);
     ud.modules = addConveyModule  (ud.modules, "CONV#2", 7, 21, 20, MOD_RIGHT, SPEED_NOM);
     ud.actions = addAction(ud.actions, "PWRON1" , ud.modules);
     ud.actions = addAction(ud.actions, "PWROFF1" , ud.modules);
 
     ud.modules = addLoaderModule(ud.modules, "LOADER#3", 61, 4, MOD_DOWN, MOD_BASE_2);
-    ud.actions = addAction(ud.actions, "INCSPD3" , ud.modules);
-    ud.actions = addAction(ud.actions, "DECSPD3", ud.modules);
-    ud.actions = addAction(ud.actions, "TOGGLE3", ud.modules);
+    ud.actions = addAction(ud.actions, "LEFT1" , ud.modules);
+    ud.actions = addAction(ud.actions, "RIGHT1", ud.modules);
     ud.modules = addConveyModule  (ud.modules, "CONV#3", 62, 7, 3, MOD_DOWN, SPEED_NOM*(rand()%21+90)/100.0);
-    ud.actions = addAction(ud.actions, "PWRON3" , ud.modules);
-    ud.actions = addAction(ud.actions, "PWROFF3" , ud.modules);
+    ud.actions = addAction(ud.actions, "ACT04" , ud.modules);
+    ud.actions = addAction(ud.actions, "SLEEP" , ud.modules);
 
     ud.modules = addLoaderModule(ud.modules, "LOADER#4", 71, 4, MOD_DOWN, MOD_BASE_2);
-    ud.actions = addAction(ud.actions, "INCSPD4" , ud.modules);
-    ud.actions = addAction(ud.actions, "DECSPD4", ud.modules);
-    ud.actions = addAction(ud.actions, "TOGGLE4", ud.modules);
+    ud.actions = addAction(ud.actions, "LEFT2" , ud.modules);
+    ud.actions = addAction(ud.actions, "RIGHT2", ud.modules);
     ud.modules = addConveyModule  (ud.modules, "CONV#4", 72, 7, 3, MOD_DOWN, SPEED_NOM*(rand()%21+90)/100.0);
-    ud.actions = addAction(ud.actions, "PWRON3" , ud.modules);
-    ud.actions = addAction(ud.actions, "PWROFF3" , ud.modules);
+    ud.actions = addAction(ud.actions, "ACT04" , ud.modules);
+    ud.actions = addAction(ud.actions, "SLEEP" , ud.modules);
 
     // ========== CUT ==============
     ud.modules = addConveyModule  (ud.modules, "CONV#CUT1", 52, 13, 7, MOD_DOWN, SPEED_NOM);
-    ud.actions = addAction(ud.actions, "PWRON4" , ud.modules);
-    ud.actions = addAction(ud.actions, "PWROFF4" , ud.modules);
+    ud.actions = addAction(ud.actions, "CONFIRM" , ud.modules);
+    ud.actions = addAction(ud.actions, "RESET1" , ud.modules);
     ud.modules = addJunctionModule(ud.modules, "JUNC#CUT", 52, 21, MOD_RIGHT, SPEED_NOM);
     ud.modules = addConveyModule  (ud.modules, "CONV#CUT2", 54, 21, 6, MOD_RIGHT, SPEED_NOM);
-    ud.actions = addAction(ud.actions, "PWRON4" , ud.modules);
-    ud.actions = addAction(ud.actions, "PWROFF4" , ud.modules);
+    ud.actions = addAction(ud.actions, "CONFIRM" , ud.modules);
+    ud.actions = addAction(ud.actions, "RESET1" , ud.modules);
 
     ud.modules = addCutterModule(ud.modules, "CUT#1", 60, 19, SPEED_NOM);
-    ud.actions = addAction(ud.actions, "CUT" , ud.modules);
+    ud.actions = addAction(ud.actions, "CUTTER" , ud.modules);
 
     ud.modules = addConveyModule  (ud.modules, "CONV#CUT3", 65, 21, 6, MOD_RIGHT, SPEED_NOM);
-    ud.actions = addAction(ud.actions, "PWRON4" , ud.modules);
-    ud.actions = addAction(ud.actions, "PWROFF4" , ud.modules);
+    ud.actions = addAction(ud.actions, "CONFIRM" , ud.modules);
+    ud.actions = addAction(ud.actions, "RESET1" , ud.modules);
 
     // =========== PAINT ============
 
@@ -167,8 +163,8 @@ int main(int argc, char** argv){
 
 
     ud.modules = addConveyModule  (ud.modules, "CONV#PAINT1", 46, 23, 11, MOD_UP, SPEED_NOM);
-    ud.actions = addAction(ud.actions, "PWRON4" , ud.modules);
-    ud.actions = addAction(ud.actions, "PWROFF4" , ud.modules);
+    ud.actions = addAction(ud.actions, "CONFIRM" , ud.modules);
+    ud.actions = addAction(ud.actions, "RESET1" , ud.modules);
 
     ud.modules = addJunctionModule(ud.modules, "JUNC#PAINT", 46, 21, MOD_LEFT, SPEED_NOM);
 
@@ -180,23 +176,20 @@ int main(int argc, char** argv){
 
 
     ud.modules = addConveyModule  (ud.modules, "CONV#PAINTout", 30, 21, 5, MOD_LEFT, SPEED_NOM);
-    ud.actions = addAction(ud.actions, "PWRON4" , ud.modules);
-    ud.actions = addAction(ud.actions, "PWROFF4" , ud.modules);
+    ud.actions = addAction(ud.actions, "CONFIRM" , ud.modules);
+    ud.actions = addAction(ud.actions, "RESET1" , ud.modules);
     ud.modules = addConveyModule  (ud.modules, "CONV#PAINTin", 40, 21, 5, MOD_LEFT, SPEED_NOM);
-    ud.actions = addAction(ud.actions, "PWRON4" , ud.modules);
-    ud.actions = addAction(ud.actions, "PWROFF4" , ud.modules);
+    ud.actions = addAction(ud.actions, "CONFIRM" , ud.modules);
+    ud.actions = addAction(ud.actions, "RESET1" , ud.modules);
 
     ud.modules = addPainterModule(ud.modules, "PAINT#1", 35, 19, SPEED_NOM);
-    ud.actions = addAction(ud.actions, "PAINT" , ud.modules);
-    ud.actions = addAction(ud.actions, "NONE" , ud.modules);
-    ud.actions = addAction(ud.actions, "WHITE" , ud.modules);
-    ud.actions = addAction(ud.actions, "BLACK" , ud.modules);
-    ud.actions = addAction(ud.actions, "RED" , ud.modules);
-    ud.actions = addAction(ud.actions, "ORANGE" , ud.modules);
-    ud.actions = addAction(ud.actions, "YELLOW" , ud.modules);
-    ud.actions = addAction(ud.actions, "GREEN" , ud.modules);
-    ud.actions = addAction(ud.actions, "BLUE" , ud.modules);
-    ud.actions = addAction(ud.actions, "PURPLE" , ud.modules);
+    ud.actions = addAction(ud.actions, "STEP" , ud.modules);
+    ud.actions = addAction(ud.actions, "ABORT" , ud.modules);
+    ud.actions = addAction(ud.actions, "WAIT" , ud.modules);
+    ud.actions = addAction(ud.actions, "LOCK" , ud.modules);
+    ud.actions = addAction(ud.actions, "PURGE" , ud.modules);
+    ud.actions = addAction(ud.actions, "COOL" , ud.modules);
+    ud.actions = addAction(ud.actions, "PICK" , ud.modules);
 
 
     ud.modules = addJunctionModule(ud.modules, "JUNC#GH", 28, 35, MOD_UP, SPEED_NOM);
@@ -216,16 +209,16 @@ int main(int argc, char** argv){
     ud.actions = addAction(ud.actions, "PWROFF2" , ud.modules);
 
     ud.modules = addPushModule  (ud.modules, "PUSH#garbage", 40, 10, MOD_UP, SPEED_NOM);
-    ud.actions = addAction(ud.actions, "PUSH0" , ud.modules);
+    ud.actions = addAction(ud.actions, "CLEAN" , ud.modules);
 
     ud.modules = addPushModule  (ud.modules, "PUSH#cut", 51, 10, MOD_DOWN, SPEED_NOM);
-    ud.actions = addAction(ud.actions, "PUSH1" , ud.modules);
+    ud.actions = addAction(ud.actions, "OPEN" , ud.modules);
 
     ud.modules = addPushModule  (ud.modules, "PUSH#deliv", 27, 27, MOD_LEFT, SPEED_NOM);
-    ud.actions = addAction(ud.actions, "PUSH3" , ud.modules);
+    ud.actions = addAction(ud.actions, "EJECT" , ud.modules);
 
     ud.modules = addPushModule  (ud.modules, "PUSH#paint", 45, 34, MOD_UP, SPEED_NOM);
-    ud.actions = addAction(ud.actions, "PUSH2" , ud.modules);
+    ud.actions = addAction(ud.actions, "MARK" , ud.modules);
 
     ud.modules = addConveyModule  (ud.modules, "CONV#H2", 41, 7, 3, MOD_UP, SPEED_NOM);
     ud.actions = addAction(ud.actions, "PWRON2" , ud.modules);
@@ -240,11 +233,11 @@ int main(int argc, char** argv){
     displayAscii("./assets/amazin.ascii", "OPTICAL READERS MATTER", 15000, 15, 3);
     //*/
 
-    //disable_echo();
+    disable_echo();
     // enable_raw_mode();
     gameLoop(pGame);
     // disable_raw_mode();
-    //enable_echo();
+    enable_echo();
 
     return 0;
 }

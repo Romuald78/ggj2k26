@@ -85,10 +85,10 @@ void powerAction(Module* p, char* action) {
         RAGE_QUIT(61, "Module or string pointer null");
     }
     // compare strings
-    if (!strcmp("PWROFF", action)) {
+    if (!strcmp("PWROFF", action) || !strcmp("SLEEP", action) || !strcmp("RESET", action)) {
         p->running = 0;
     }
-    else if (!strcmp("PWRON", action)) {
+    else if (!strcmp("PWRON", action) || !strcmp("ACT", action) || !strcmp("CONFIRM", action)) {
         p->running = 1;
     }
 }
