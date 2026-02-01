@@ -58,59 +58,23 @@ void conveyUpdate(Module* p, void* pData) {
 //=========================================================
 void conveyDraw  (Module* p) {
     if (p != NULL) {
-        for (int dist=0; dist<=1; dist++) {
-            if (dist==0) {
-                printf("\x1B[%d;%dH🟦", p->y0, p->x0);
-                for (int i=1;i<p->size-1;i++) {
-                    if (p->orient%2 == 1) {
-                        printf("\x1B[%d;%dH", p->y0+i, p->x0);
-                    }
-                    // print normal cell
-                    printf("⬛");
-                }
-                if (p->orient%2 == 1) {
-                    printf("\x1B[%d;%dH", p->y0+p->size-1, p->x0);
-                }
-                printf("🟦");
+        printf("\x1B[%d;%dH🟦", p->y0, p->x0);
+        for (int i=1;i<p->size-1;i++) {
+            if (p->orient%2 == 1) {
+                printf("\x1B[%d;%dH", p->y0+i, p->x0);
             }
-            else if (p->running){
-                printf("\x1B[%d;%dH", p->y0 + 1, p->x0 + 2);
-                for (int i=1;i<p->size-1;i++) {
-                    if (p->orient%2 == 1) {
-                        printf("\x1B[%d;%dH", p->y0+i, p->x0-2);
-                    }
-                    int way = 1;
-                    if (p->orient>=2) {
-                        way = -1;
-                    }
-                    // print normal cell
-                    if (((int)(p->time_step)-(way*i))%8 == 0) {
-                        // print arrow
-                        switch (p->orient) {
-                            case MOD_LEFT:
-                                printf("⬅️ ");
-                                break;
-                            case MOD_RIGHT:
-                                printf("➡️ ");
-                                break;
-                            case MOD_UP:
-                                printf("⬆️ ");
-                                break;
-                            case MOD_DOWN:
-                                printf("⬇️ ");
-                                break;
-                            default:
-                                printf("??");
-                                break;
-                        }
-                    }
-                    else{
-                        printf("  ");
-                    }
-                }
+            // print normal cell
+            if (p->running) {
+                printf("⬛");
+            }
+            else {
+                printf("◼️ ");
             }
         }
-
+        if (p->orient%2 == 1) {
+            printf("\x1B[%d;%dH", p->y0+p->size-1, p->x0);
+        }
+        printf("🟦");
 
     }
 }

@@ -218,6 +218,11 @@ int main(int argc, char** argv){
     ud.modules = addPushModule  (ud.modules, "PUSH#paint", 45, 34, MOD_UP, SPEED_NOM);
     ud.actions = addAction(ud.actions, "PUSH2" , ud.modules);
 
+    ud.modules = addConveyModule  (ud.modules, "CONV#H2", 41, 7, 3, MOD_UP, SPEED_NOM);
+    ud.actions = addAction(ud.actions, "PWRON2" , ud.modules);
+    ud.actions = addAction(ud.actions, "PWROFF2" , ud.modules);
+
+
 
     // INTRO + SPLASH SCREENS
     /*

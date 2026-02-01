@@ -28,8 +28,8 @@ int updateUser(Game* pGame, float delta) {
         // Update module timer
         if (current_mod->running) {
             current_mod->time += delta;
+
             if (current_mod->speed > 0) {
-                
                 while (current_mod->time >= current_mod->speed) {
                     fprintf(stderr, "UPDATE module '%s' \n", current_mod->pName);
                     current_mod->time -= current_mod->speed;
