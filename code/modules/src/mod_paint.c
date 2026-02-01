@@ -14,25 +14,87 @@ void paintUpdate(Module* p, void* pData) {
     if (p == NULL || pData == NULL) {
         RAGE_QUIT(60, "Module pointer null");
     }
+
+    /*
+    Product* pProd = ((UserData*)pData)->products;
+    while (pProd != NULL) {
+        if (p->x0 <= pProd->x && pProd->x <= p->x0 + 4*2 && p->y0 <= pProd->y  && pProd->y <= p->y0+4) {
+            if(p->specific_mode % 2 == 1) {
+                if (strcmp(pProd->type, "🧻") == 0) {
+                    pProd->type = "👤";
+                }
+                else if (rand()%101 <= 50) {
+                    pProd->type = "💩";
+                }
+                else {
+                    pProd->type = "🤮";
+                }
+            }
+            else  {
+                if (strcmp(pProd->type, "📦") == 0) {
+                    pProd->type = "👥";
+                }
+                else if (rand()%101 <= 50) {
+                    pProd->type = "💩";
+                }
+                else {
+                    pProd->type = "🤮";
+                }
+            }
+            pProd->x += 5 * 2;
+        }
+        pProd = pProd->pNext;
+    }
+    */
+
+
 }
 
 //=========================================================
 // DRAW callback
 //=========================================================
+char* getColorStr(int clr) {
+    switch (clr) {
+        case WHITE:
+            return "⚪";
+        case BLACK:
+            return "⚫";
+        case RED:
+            return "🔴";
+        case ORANGE:
+            return "🟠";
+        case YELLOW:
+            return "🟡";
+        case GREEN:
+            return "🟢";
+        case BLUE:
+            return "🔵";
+        case PURPLE:
+            return "🟣";
+        default:
+        case NONE:
+            return "✖️ ";
+    }
+}
+
 void paintDraw  (Module* p) {
     if (p != NULL) {
+
+        char* clr = getColorStr(p->color);
+
+
         printf("\x1B[%d;%dH", p->y0, p->x0);
         printf("🟩🟩🟩🟩🟩");
         printf("\x1B[%d;%dH", p->y0+1, p->x0);
         if (p->specific_mode == 1) {
             printf("🟩⬛🖌️ ⬛🟩");
             printf("\x1B[%d;%dH", p->y0+2, p->x0);
-            printf("🟦⬛✖️ ⬛🟦");
+            printf("🟦⬛%s⬛🟦", clr);
         }
         else {
             printf("🟩🖌️ ⬛🖌️ 🟩");
             printf("\x1B[%d;%dH", p->y0+2, p->x0);
-            printf("🟦✖️ ⬛✖️ 🟦");
+            printf("🟦%s⬛%s🟦", clr, clr);
         }
         printf("\x1B[%d;%dH", p->y0+3, p->x0);
         printf("🟩🟩🟩🟩🟩");
@@ -47,12 +109,37 @@ void paintAction(Module* p, char* action) {
         RAGE_QUIT(61, "Module or string pointer null");
     }
     // compare strings
-    if (!strcmp("xxxxx", action)) {
-        p->running = 1;
+    if (!strcmp("PAINT", action)) {
+        p->specific_mode = !p->specific_mode;
     }
-    else if (!strcmp("xxxffxx", action)) {
-        p->running = 0;
+    else if (!strcmp("NONE", action)) {
+        p->color = NONE;
     }
+    else if (!strcmp("WHITE", action)) {
+        p->color = WHITE;
+    }
+    else if (!strcmp("BLACK", action)) {
+        p->color = BLACK;
+    }
+    else if (!strcmp("RED", action)) {
+        p->color = RED;
+    }
+    else if (!strcmp("ORANGE", action)) {
+        p->color = ORANGE;
+    }
+    else if (!strcmp("YELLOW", action)) {
+        p->color = YELLOW;
+    }
+    else if (!strcmp("GREEN", action)) {
+        p->color = GREEN;
+    }
+    else if (!strcmp("BLUE", action)) {
+        p->color = BLUE;
+    }
+    else if (!strcmp("PURPLE", action)) {
+        p->color = PURPLE;
+    }
+
 }
 
 //=========================================================
@@ -63,7 +150,7 @@ Module* addPainterModule(Module* pList, char* name, int x0, int y0, float speed)
     if (p == NULL) {
         RAGE_QUIT(101, "create paint failed");
     }
-
+    p->running = 1;
     p->specific_mode = MOD_BASE_1;
     p->pNext = pList;
     return p;

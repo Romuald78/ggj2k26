@@ -40,11 +40,8 @@ void garbageDraw  (Module* p) {
                 else if (x == 0 || y == 0 || x == p->size-1 || y == p->size-1) {
                     printf("⬛");
                 }
-                else if (p->garbage != 0){
-                    printf("♻️ ");
-                }
                 else {
-                    printf("  ");
+                    printf("♻️ ");
                 }
             }
         }

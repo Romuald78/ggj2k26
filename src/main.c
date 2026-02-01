@@ -110,8 +110,7 @@ int main(int argc, char** argv){
     ud.actions = addAction(ud.actions, "PWROFF4" , ud.modules);
 
     ud.modules = addCutterModule(ud.modules, "CUT#1", 60, 19, SPEED_NOM);
-    ud.actions = addAction(ud.actions, "CUTONE" , ud.modules);
-    ud.actions = addAction(ud.actions, "CUTTWO" , ud.modules);
+    ud.actions = addAction(ud.actions, "CUT" , ud.modules);
 
     ud.modules = addConveyModule  (ud.modules, "CONV#CUT3", 65, 21, 6, MOD_RIGHT, SPEED_NOM);
     ud.actions = addAction(ud.actions, "PWRON4" , ud.modules);
@@ -127,7 +126,6 @@ int main(int argc, char** argv){
     ud.actions = addAction(ud.actions, "PWRON2" , ud.modules);
     ud.actions = addAction(ud.actions, "PWROFF2" , ud.modules);
 
-    // todo pusher CUT top to split B1/B2
 
     ud.modules = addConveyModule  (ud.modules, "CONV#B1", 43, 11, 8, MOD_RIGHT, SPEED_NOM);
     ud.actions = addAction(ud.actions, "PWRON2" , ud.modules);
@@ -167,7 +165,6 @@ int main(int argc, char** argv){
     ud.actions = addAction(ud.actions, "PWRON2" , ud.modules);
     ud.actions = addAction(ud.actions, "PWROFF2" , ud.modules);
 
-    // todo ADD PUSH TOP TO PAINT
 
     ud.modules = addConveyModule  (ud.modules, "CONV#PAINT1", 46, 23, 11, MOD_UP, SPEED_NOM);
     ud.actions = addAction(ud.actions, "PWRON4" , ud.modules);
@@ -190,6 +187,17 @@ int main(int argc, char** argv){
     ud.actions = addAction(ud.actions, "PWROFF4" , ud.modules);
 
     ud.modules = addPainterModule(ud.modules, "PAINT#1", 35, 19, SPEED_NOM);
+    ud.actions = addAction(ud.actions, "PAINT" , ud.modules);
+    ud.actions = addAction(ud.actions, "NONE" , ud.modules);
+    ud.actions = addAction(ud.actions, "WHITE" , ud.modules);
+    ud.actions = addAction(ud.actions, "BLACK" , ud.modules);
+    ud.actions = addAction(ud.actions, "RED" , ud.modules);
+    ud.actions = addAction(ud.actions, "ORANGE" , ud.modules);
+    ud.actions = addAction(ud.actions, "YELLOW" , ud.modules);
+    ud.actions = addAction(ud.actions, "GREEN" , ud.modules);
+    ud.actions = addAction(ud.actions, "BLUE" , ud.modules);
+    ud.actions = addAction(ud.actions, "PURPLE" , ud.modules);
+
 
     ud.modules = addJunctionModule(ud.modules, "JUNC#GH", 28, 35, MOD_UP, SPEED_NOM);
 

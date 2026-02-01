@@ -14,6 +14,36 @@ void cutterUpdate(Module* p, void* pData) {
     if (p == NULL || pData == NULL) {
         RAGE_QUIT(60, "Module pointer null");
     }
+    Product* pProd = ((UserData*)pData)->products;
+    while (pProd != NULL) {
+        if (p->x0 <= pProd->x && pProd->x <= p->x0 + 4*2 && p->y0 <= pProd->y  && pProd->y <= p->y0+4) {
+            if(p->specific_mode % 2 == 1) {
+                if (strcmp(pProd->type, "🧻") == 0) {
+                    pProd->type = "👤";
+                }
+                else if (rand()%101 <= 50) {
+                    pProd->type = "💩";
+                }
+                else {
+                    pProd->type = "🤮";
+                }
+            }
+            else  {
+                if (strcmp(pProd->type, "📦") == 0) {
+                    pProd->type = "👥";
+                }
+                else if (rand()%101 <= 50) {
+                    pProd->type = "💩";
+                }
+                else {
+                    pProd->type = "🤮";
+                }
+            }
+            pProd->x += 5 * 2;
+        }
+        pProd = pProd->pNext;
+    }
+
 }
 
 //=========================================================
@@ -47,12 +77,10 @@ void cutterAction(Module* p, char* action) {
         RAGE_QUIT(61, "Module or string pointer null");
     }
     // compare strings
-    if (!strcmp("xxxxx", action)) {
-        p->running = 1;
+    if (!strcmp("CUT", action)) {
+        p->specific_mode = !p->specific_mode;
     }
-    else if (!strcmp("xxxffxx", action)) {
-        p->running = 0;
-    }
+
 }
 
 //=========================================================
@@ -63,6 +91,7 @@ Module* addCutterModule(Module* pList, char* name, int x0, int y0, float speed) 
     if (p == NULL) {
         RAGE_QUIT(70, "create convey failed");
     }
+    p->running = 1;
     p->specific_mode = MOD_BASE_1;
     p->pNext = pList;
     return p;

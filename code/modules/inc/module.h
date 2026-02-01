@@ -18,6 +18,18 @@ enum {
     MOD_BASE_2
 };
 
+enum {
+    NONE = 0,
+    WHITE,
+    BLACK,
+    RED,
+    ORANGE,
+    YELLOW,
+    GREEN,
+    BLUE,
+    PURPLE
+};
+
 typedef struct _mod Module;
 
 typedef void (*ModuleUpdate)(Module* p, void* pData);
@@ -47,6 +59,7 @@ struct _mod{
     int          load_speed;    // speed of output : speed will be modified according to this integer value
     int          garbage;
 
+    int          color;         // enum
     struct _mod* pNext;
 };
 
